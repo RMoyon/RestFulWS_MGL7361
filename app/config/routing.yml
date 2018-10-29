@@ -1,3 +1,6 @@
 user:
     type:     rest
     resource: AppBundle\Controller\UserController
+greatdeal: 
+    type:     rest
+    resource: AppBundle\Controller\GreatDealController

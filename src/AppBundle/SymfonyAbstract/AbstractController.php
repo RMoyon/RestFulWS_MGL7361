@@ -91,6 +91,6 @@ class AbstractController extends Controller
 
     public function send404Error()
     {
-        return \FOS\RestBundle\View\View::create(['message' => 'Impossible de trouver cet utilisateur'], Response::HTTP_NOT_FOUND);
+        return \FOS\RestBundle\View\View::create(['message' => 'Impossible de trouver cette entité'], Response::HTTP_NOT_FOUND);
     }
 }

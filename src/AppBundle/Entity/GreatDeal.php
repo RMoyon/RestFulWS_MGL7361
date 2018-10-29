@@ -2,34 +2,46 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="great_deal")
+ * @ORM\Table(name="great_deal",
+ *      uniqueConstraints={@ORM\UniqueConstraint(name="great_deal_name_unique",columns={"name"})}
+ * )
+ * @UniqueEntity("name", message="Un évènement porte déjà le même nom")
  */
 class GreatDeal
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name= "id_great_deal", type="integer")
      * @ORM\GeneratedValue
      */
-    protected $id_great_deal;
+    private $idGreatDeal;
+
+    /**
+     * @ORM\Column(name="type_of_great_deal", type="string")
+     * @Assert\NotBlank()
+     * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
+     * @Assert\Choice({"Discount", "Event"})
+     */
+    private $typeOfGreatDeal;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
      */
-    protected $type;
+    private $name;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
      */
-    protected $name;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    protected $description;
+    private $description;
 
     // /**
     //  * @ORM\ManyToMany(targetEntity="User", mappedBy="GreatDeal")
@@ -40,12 +52,12 @@ class GreatDeal
 
     public function getId()
     {
-        return $this->id_great_deal;
+        return $this->idGreatDeal;
     }
 
-    public function getType()
+    public function getTypeOfGreatDeal()
     {
-        return $this->type;
+        return $this->typeOfGreatDeal;
     }
 
     public function getName()
@@ -55,18 +67,18 @@ class GreatDeal
 
     public function getDescription()
     {
-        return $this->descritpion;
+        return $this->description;
     }
 
     public function setId($id)
     {
-        $this->id_great_deal = $id;
+        $this->idGreatDeal = $id;
         return $this;
     }
 
-    public function setType($type)
+    public function setTypeOfGreatDeal($typeOfGreatDeal)
     {
-        $this->type = $type;
+        $this->typeOfGreatDeal = $typeOfGreatDeal;
         return $this;
     }
 
@@ -76,9 +88,9 @@ class GreatDeal
         return $this;
     }
 
-    public function setDescritpion($description)
+    public function setDescription($description)
     {
-        $this->description = $descritpion;
+        $this->description = $description;
         return $this;
     }
 
