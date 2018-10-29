@@ -31,11 +31,11 @@ class GreatDeal
      */
     protected $description;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="GreatDeal")
-     * @var User[]
-     */
-    protected $user;
+    // /**
+    //  * @ORM\ManyToMany(targetEntity="User", mappedBy="GreatDeal")
+    //  * @var User[]
+    //  */
+    // protected $user;
 
 
     public function getId()

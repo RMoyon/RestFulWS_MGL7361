@@ -2,50 +2,61 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="user")
+ * @ORM\Table(name="user",
+ *      uniqueConstraints={@ORM\UniqueConstraint(name="user_login_unique",columns={"login"})}
+ * )
+ * @UniqueEntity("login", message="Cet identifiant existe déjà")
  */
 class User
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id_user", type="integer")
      * @ORM\GeneratedValue
      */
-    protected $id_user;
+    private $idUser;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
      */
-    protected $login;
+    private $login;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
      */
-    protected $password;
+    private $password;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(name="last_name", type="string", nullable=true)
+     * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
      */
-    protected $last_name;
+    private $lastName;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(name="first_name", type="string", nullable=true)
+     * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
      */
-    protected $first_name;
+    private $firstName;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="GreatDeal", mappedBy="User")
-     * @var GreatDeal[]
-     */
-    protected $great_deal;
+    // /**
+    //  * @ORM\ManyToMany(targetEntity="GreatDeal", mappedBy="User")
+    //  * @var GreatDeal[]
+    //  */
+    // private $greatDeal;
 
 
     public function getId()
     {
-        return $this->id_user;
+        return $this->idUser;
     }
 
     public function getLogin()
@@ -60,17 +71,17 @@ class User
 
     public function getLastName()
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
     public function getFirstName()
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
-    public function setId($id)
+    public function setId($idUser)
     {
-        $this->id = $id;
+        $this->idUser = $idUser;
         return $this;
     }
 
@@ -86,15 +97,15 @@ class User
         return $this;
     }
 
-    public function setLastName($last_name)
+    public function setLastName($lastName)
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
         return $this;
     }
 
-    public function setFirstName($first_name)
+    public function setFirstName($firstName)
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
         return $this;
     }
 }
