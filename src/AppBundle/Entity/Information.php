@@ -3,7 +3,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity()
@@ -19,15 +18,17 @@ class Information
     private $idInformation;
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
+     * @Assert\Choice(callback="callBackForCategoryValidation",
+     *               message="N'est pas égal à une des valeurs définies")
      */
     private $category;
 
     /**
-     * @ORM\Column(name="street_number", type="string")
+     * @ORM\Column(name="street_number", type="integer")
      * @Assert\NotBlank()
-     * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
+     * @Assert\Type("integer", message="Cette valeur devrait être du type {{ type }}")
      */
     private $streetNumber;
 
@@ -48,11 +49,12 @@ class Information
      * @ORM\Column(name="postal_code", type="string", nullable=true)
      * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
      */
+    //TODO Add control on postalCode
     private $postalCode;
 
     /**
      * @ORM\Column(name="email", type="string", nullable=true)
-     * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
+     * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
      */
     private $email;
 
@@ -60,16 +62,16 @@ class Information
      * @ORM\Column(name="phone_number", type="string", nullable=true)
      * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
      */
+    //TODO Add control on phoneNumber
     private $phoneNumber;
 
-        /**
+    /**
      * @ORM\Column(name="urlWebsite", type="string", nullable=true)
-     * @Assert\Type("url", message="Cette valeur devrait être du type {{ type }}")
+     * @Assert\Url(message="Cette URL est incorrecte")
      */
     private $urlWebsite;
 
-
-    public function getId()
+    public function getIdInformation()
     {
         return $this->idInformation;
     }
@@ -114,34 +116,62 @@ class Information
         return $this->urlWebsite;
     }
 
-    //TODO SETTERS
-    public function setId($idUser)
+    public function setIdInformation($idInformation)
     {
-        $this->idUser = $idUser;
+        $this->idInformation = $idInformation;
         return $this;
     }
 
-    public function setLogin($login)
+    public function setCategory($category)
     {
-        $this->login = $login;
+        $this->category = $category;
         return $this;
     }
 
-    public function setPassword($password)
+    public function setStreetNumber($streetNumber)
     {
-        $this->password = $password;
+        $this->streetNumber = $streetNumber;
         return $this;
     }
 
-    public function setLastName($lastName)
+    public function setStreetName($streetName)
     {
-        $this->lastName = $lastName;
+        $this->streetName = $streetName;
         return $this;
     }
 
-    public function setFirstName($firstName)
+    public function setTown($town)
     {
-        $this->firstName = $firstName;
+        $this->town = $town;
         return $this;
+    }
+
+    public function setPostalCode($postalCode)
+    {
+        $this->postalCode = $postalCode;
+        return $this;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+        return $this;
+    }
+
+    public function seturlWebsite($urlWebsite)
+    {
+        $this->urlWebsite = $urlWebsite;
+        return $this;
+    }
+
+    public function callBackForCategoryValidation()
+    {
+        return array("Bar", "Restaurant", "Cinéma", "Discothèque");
     }
 }

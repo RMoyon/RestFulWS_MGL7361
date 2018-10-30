@@ -4,3 +4,6 @@ user:
 greatdeal: 
     type:     rest
     resource: AppBundle\Controller\GreatDealController
+information:
+    type:     rest
+    resource: AppBundle\Controller\InformationController
