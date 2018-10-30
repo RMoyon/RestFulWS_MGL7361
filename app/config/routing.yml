@@ -10,3 +10,6 @@ information:
 tag:
     type:     rest
     resource: AppBundle\Controller\TagController
+university:
+    type:     rest
+    resource: AppBundle\Controller\UniversityController
