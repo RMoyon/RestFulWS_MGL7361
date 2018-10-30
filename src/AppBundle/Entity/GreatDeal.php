@@ -50,7 +50,8 @@ class GreatDeal
     //  */
     // protected $user;
 
-    public function getIdUser()
+
+    public function getIdGreatDeal()
     {
         return $this->idGreatDeal;
     }
@@ -70,9 +71,9 @@ class GreatDeal
         return $this->description;
     }
 
-    public function setIdUser($id)
+    public function setIdGreatDeal($idGreatDeal)
     {
-        $this->idGreatDeal = $id;
+        $this->idGreatDeal = $idGreatDeal;
         return $this;
     }
 

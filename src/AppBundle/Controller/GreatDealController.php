@@ -32,7 +32,7 @@ class GreatDealController extends AbstractController
      * @Rest\View(statusCode=Response::HTTP_CREATED)
      * @Rest\Post("/greatdeals")
      */
-    public function postUserAction(Request $request)
+    public function postGreatDealAction(Request $request)
     {
         $greatDeal = new GreatDeal();
         $form = $this->createForm(GreatDealType::class, $greatDeal);
@@ -44,7 +44,7 @@ class GreatDealController extends AbstractController
      * @Rest\View()
      * @Rest\Patch("/greatdeals/{idGreatDeal}")
      */
-    public function patchUserAction(Request $request)
+    public function patchGreatDealAction(Request $request)
     {
         $greatDeal = $this->getOneInstanceOfOneEntityById("GreatDeal", $request->get('idGreatDeal'));
         $form = $this->createForm(GreatDealType::class, $greatDeal);
@@ -56,7 +56,7 @@ class GreatDealController extends AbstractController
      * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
      * @Rest\Delete("/greatdeals/{idGreatDeal}")
      */
-    public function removeUserAction(Request $request)
+    public function removeGreatDealAction(Request $request)
     {
         return $this->removeEntityAction("GreatDeal", $request->get('idGreatDeal'));
     }

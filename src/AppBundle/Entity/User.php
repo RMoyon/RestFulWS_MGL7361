@@ -52,6 +52,7 @@ class User
     //  * @var GreatDeal[]
     //  */
     // private $greatDeal;
+    
 
     public function getIdUser()
     {

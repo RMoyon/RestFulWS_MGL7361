@@ -1,9 +1,12 @@
 user:
     type:     rest
     resource: AppBundle\Controller\UserController
-greatdeal: 
+greatdeal:
     type:     rest
     resource: AppBundle\Controller\GreatDealController
 information:
     type:     rest
     resource: AppBundle\Controller\InformationController
+tag:
+    type:     rest
+    resource: AppBundle\Controller\TagController
