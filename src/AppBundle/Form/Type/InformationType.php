@@ -27,4 +27,3 @@ class InformationType extends AbstractType
         ]);
     }
 }
-

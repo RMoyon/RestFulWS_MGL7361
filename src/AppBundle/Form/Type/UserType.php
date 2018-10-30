@@ -19,7 +19,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => 'AppBundle\Entity\User',
-            'csrf_protection' => false
+            'csrf_protection' => false,
         ]);
     }
 }

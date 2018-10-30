@@ -2,8 +2,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
@@ -53,8 +53,7 @@ class User
     //  */
     // private $greatDeal;
 
-
-    public function getId()
+    public function getIdUser()
     {
         return $this->idUser;
     }
@@ -79,7 +78,7 @@ class User
         return $this->firstName;
     }
 
-    public function setId($idUser)
+    public function setIdUser($idUser)
     {
         $this->idUser = $idUser;
         return $this;

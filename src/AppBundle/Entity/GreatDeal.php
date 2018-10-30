@@ -2,8 +2,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
@@ -25,7 +25,8 @@ class GreatDeal
      * @ORM\Column(name="type_of_great_deal", type="string")
      * @Assert\NotBlank()
      * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
-     * @Assert\Choice({"Discount", "Event"})
+     * @Assert\Choice(callback="callBackForTypeOfGreatDealValidation",
+     *               message="Doit être égal à Discount ou Event")
      */
     private $typeOfGreatDeal;
 
@@ -49,8 +50,7 @@ class GreatDeal
     //  */
     // protected $user;
 
-
-    public function getId()
+    public function getIdUser()
     {
         return $this->idGreatDeal;
     }
@@ -70,7 +70,7 @@ class GreatDeal
         return $this->description;
     }
 
-    public function setId($id)
+    public function setIdUser($id)
     {
         $this->idGreatDeal = $id;
         return $this;
@@ -94,4 +94,8 @@ class GreatDeal
         return $this;
     }
 
+    public function callBackForTypeOfGreatDealValidation()
+    {
+        return array("Discount", "Event");
+    }
 }
