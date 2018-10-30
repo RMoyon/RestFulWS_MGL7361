@@ -13,3 +13,6 @@ tag:
 university:
     type:     rest
     resource: AppBundle\Controller\UniversityController
+period:
+    type:     rest
+    resource: AppBundle\Controller\PeriodController
