@@ -45,12 +45,6 @@ class GreatDeal
   private $description;
 
   /**
-   * @ORM\ManyToMany(targetEntity="User", inversedBy="GreatDeal")
-   * @var User[]
-   */
-  protected $user;
-
-  /**
    * @ORM\ManyToMany(targetEntity="University", mappedBy="GreatDeal")
    * @var University[]
    */

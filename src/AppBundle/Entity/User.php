@@ -54,12 +54,6 @@ class User
   // private $greatDeal;
 
   /**
-   * @ORM\ManyToMany(targetEntity="GreatDeal", mappedBy="user")
-   * @var GreatDeal[]
-   */
-  protected $great_deal;
-
-  /**
    * @ORM\OneToMany(targetEntity="TakeAnInterest", mappedBy="user")
    * @var TakeAnInterest[]
    */
