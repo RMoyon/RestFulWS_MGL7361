@@ -25,6 +25,7 @@ http://localhost/phpmyadmin/
 ```
 
 5. Configurer le serveur
+Dans l'invite de commande, dans la base du dossier RestFulWS_MGL7361
 ```
 composer install
 composer require FOSRestBundle
@@ -32,6 +33,7 @@ composer require FOSRestBundle
 Ensuite, modifier le fichier app/config/parameters.yml pour y avoir vos identifiants de connexion à MySQL.
 
 6. Créer la base de données
+Dans l'invite de commande, dans la base du dossier RestFulWS_MGL7361
 ```
 php bin/console doctrine:database:create
 php bin/console doctrine:schema:update --dump-sql --force
