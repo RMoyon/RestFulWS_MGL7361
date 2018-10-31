@@ -1,4 +1,49 @@
-rest_api
+RestFulWS_MGL7361
 ========
 
-A Symfony project created on October 27, 2018, 1:55 pm.
+### Configuration
+
+1. Installation de PHP
+
+2. Installation d'un serveur Apache
+```
+Si sur Windows, l'installation de WAMP server est suffisant.
+Si sur Linux, voir la documentation du système d'exploitation.
+Si sur MacOs, bonne chance.
+```
+
+3. Installation de MySQL & phpMyAdmin
+```
+Si sur Windows, WAMP contient de base MySQL et phpMyAdmin.
+Si sur Linux, voir la documentation du système d'exploitation.
+Si sur MacOs, vraiment, bonne chance.
+```
+
+4. Ne pas oublier de tester phpMyAdmin
+```
+http://localhost/phpmyadmin/
+```
+
+5. Configurer le serveur
+```
+composer install
+composer require FOSRestBundle
+```
+Ensuite, modifier le fichier app/config/parameters.yml pour y avoir vos identifiants de connexion à MySQL.
+
+6. Créer la base de données
+```
+php bin/console doctrine:database:create
+php bin/console doctrine:schema:update --dump-sql --force
+php bin/console doctrine:database:import ../ScriptSQLInsert.sql
+```
+
+7. Lancer le serveur
+```
+php bin/console server:run
+```
+
+8. Tester
+```
+127.0.0.1:8000/users
+```
