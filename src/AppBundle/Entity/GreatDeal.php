@@ -14,89 +14,188 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class GreatDeal
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(name= "id_great_deal", type="integer")
-     * @ORM\GeneratedValue
-     */
-    private $idGreatDeal;
+  /**
+   * @ORM\Id
+   * @ORM\Column(type="integer")
+   * @ORM\GeneratedValue
+   */
+  private $id;
 
-    /**
-     * @ORM\Column(name="type_of_great_deal", type="string")
-     * @Assert\NotBlank()
-     * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
-     * @Assert\Choice(callback="callBackForTypeOfGreatDealValidation",
-     *               message="Doit être égal à Discount ou Event")
-     */
-    private $typeOfGreatDeal;
+  /**
+   * @ORM\Column(name="type_of_great_deal", type="string")
+   * @Assert\NotBlank()
+   * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
+   * @Assert\Choice(callback="callBackForTypeOfGreatDealValidation",
+   *               message="Doit être égal à Discount ou Event")
+   */
+  private $typeOfGreatDeal;
 
-    /**
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
-     * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
-     */
-    private $name;
+  /**
+   * @ORM\Column(type="string")
+   * @Assert\NotBlank()
+   * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
+   */
+  private $name;
 
-    /**
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
-     * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
-     */
-    private $description;
+  /**
+   * @ORM\Column(type="string")
+   * @Assert\NotBlank()
+   * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
+   */
+  private $description;
 
-    // /**
-    //  * @ORM\ManyToMany(targetEntity="User", mappedBy="GreatDeal")
-    //  * @var User[]
-    //  */
-    // protected $user;
+  /**
+   * @ORM\ManyToMany(targetEntity="User", inversedBy="GreatDeal")
+   * @var User[]
+   */
+  protected $user;
 
+  /**
+   * @ORM\ManyToMany(targetEntity="University", mappedBy="GreatDeal")
+   * @var University[]
+   */
+  protected $university;
 
-    public function getIdGreatDeal()
-    {
-        return $this->idGreatDeal;
-    }
+  /**
+   * @ORM\ManyToMany(targetEntity="Information", mappedBy="GreatDeal")
+   * @var Information[]
+   */
+  protected $information;
 
-    public function getTypeOfGreatDeal()
-    {
-        return $this->typeOfGreatDeal;
-    }
+  /**
+   * @ORM\ManyToMany(targetEntity="Tag", mappedBy="GreatDeal")
+   * @var Tag[]
+   */
+  protected $tag;
 
-    public function getName()
-    {
-        return $this->name;
-    }
+  /**
+   * @ORM\OneToMany(targetEntity="Period", mappedBy="GreatDeal")
+   * @var Period[]
+   */
+  protected $period;
 
-    public function getDescription()
-    {
-        return $this->description;
-    }
+  /**
+   * @ORM\OneToMany(targetEntity="TakeAnInterest", mappedBy="GreatDeal")
+   * @var TakeAnInterest[]
+   */
+  protected $take_an_interest;
 
-    public function setIdGreatDeal($idGreatDeal)
-    {
-        $this->idGreatDeal = $idGreatDeal;
-        return $this;
-    }
+###############################################################
 
-    public function setTypeOfGreatDeal($typeOfGreatDeal)
-    {
-        $this->typeOfGreatDeal = $typeOfGreatDeal;
-        return $this;
-    }
+  public function getId()
+  {
+    return $this->id;
+  }
 
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
+  public function getTypeOfGreatDeal()
+  {
+    return $this->typeOfGreatDeal;
+  }
 
-    public function setDescription($description)
-    {
-        $this->description = $description;
-        return $this;
-    }
+  public function getName()
+  {
+    return $this->name;
+  }
 
-    public function callBackForTypeOfGreatDealValidation()
-    {
-        return array("Discount", "Event");
-    }
+  public function getDescription()
+  {
+    return $this->description;
+  }
+
+  public function getUser()
+  {
+    return $this->user;
+  }
+
+  public function getUniversity()
+  {
+    return $this->university;
+  }
+
+  public function getInformation()
+  {
+    return $this->information;
+  }
+
+  public function getTag()
+  {
+    return $this->tag;
+  }
+
+  public function getPeriod()
+  {
+    return $this->period;
+  }
+
+  public function getTakeAnInterest()
+  {
+    return $this->take_an_interest;
+  }
+
+  public function setId($id)
+  {
+    $this->id = $id;
+    return $this;
+  }
+
+  public function setTypeOfGreatDeal($typeOfGreatDeal)
+  {
+    $this->typeOfGreatDeal = $typeOfGreatDeal;
+    return $this;
+  }
+
+  public function setName($name)
+  {
+    $this->name = $name;
+    return $this;
+  }
+
+  public function setDescription($description)
+  {
+    $this->description = $description;
+    return $this;
+  }
+
+  public function setUser(User $user)
+  {
+    $this->user = $user;
+    return $this;
+  }
+
+  public function setUniversity(University $university)
+  {
+    $this->university = $university;
+    return $this;
+  }
+
+  public function setInformation(Information $information)
+  {
+    $this->informatio = $information;
+    return $this;
+  }
+
+  public function setTag(Tag $tag)
+  {
+    $this->tag = $tag;
+    return $this;
+  }
+
+  public function setPeriod(Period $period)
+  {
+    $this->period = $period;
+    return $this;
+  }
+
+  public function setTakeAnInterest(TakeAnInterest $take_an_interest)
+  {
+    $this->take_an_interest = $take_an_interest;
+    return $this;
+  }
+
+################################################################
+
+  public function callBackForTypeOfGreatDealValidation()
+  {
+    return array("Discount", "Event");
+  }
 }

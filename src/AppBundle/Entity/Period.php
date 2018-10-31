@@ -11,56 +11,76 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Period
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(name="id_period", type="integer")
-     * @ORM\GeneratedValue
-     */
-    private $idPeriod;
+  /**
+   * @ORM\Id
+   * @ORM\Column(type="integer")
+   * @ORM\GeneratedValue
+   */
+  private $id;
 
-    /**
-     * @ORM\Column(name="start_date", type="datetime")
-     * @Assert\NotBlank()
-     */
-    private $startDate;
+  /**
+   * @ORM\Column(name="start_date", type="datetime")
+   * @Assert\NotBlank()
+   */
+  private $startDate;
 
-    /**
-     * @ORM\Column(name="end_date", type="datetime")
-     * @Assert\NotBlank()
-     */
-    //TODO Ajouter un contrôle pour que les deux dates ne soient pas égales
-    private $endDate;
+  /**
+   * @ORM\Column(name="end_date", type="datetime")
+   * @Assert\NotBlank()
+   */
+  //TODO Ajouter un contrôle pour que les deux dates ne soient pas égales
+  private $endDate;
 
-    public function getIdPeriod()
-    {
-        return $this->idPeriod;
-    }
+  /**
+   * @ORM\ManyToOne(targetEntity="GreatDeal", inversedBy="period")
+   * @ORM\JoinColumn(nullable=false)
+   * @var great_deal[]
+   */
+  protected $great_deal;
 
-    public function getStartDate()
-    {
-        return $this->startDate;
-    }
+################################################################
 
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
+  public function getId()
+  {
+    return $this->id;
+  }
 
-    public function setIdPeriod($idPeriod)
-    {
-        $this->idPeriod = $idPeriod;
-        return $this;
-    }
+  public function getStartDate()
+  {
+    return $this->startDate;
+  }
 
-    public function setStartDate($startDate)
-    {
-        $this->startDate = $startDate;
-        return $this;
-    }
+  public function getEndDate()
+  {
+    return $this->endDate;
+  }
 
-    public function setendDate($endDate)
-    {
-        $this->endDate = $endDate;
-        return $this;
-    }
+  public function getGreatDeal()
+  {
+    return $this->great_deal;
+  }
+
+  public function setId($id)
+  {
+    $this->id = $id;
+    return $this;
+  }
+
+  public function setStartDate($startDate)
+  {
+    $this->startDate = $startDate;
+    return $this;
+  }
+
+  public function setendDate($endDate)
+  {
+    $this->endDate = $endDate;
+    return $this;
+  }
+
+  public function setGreatDeal(GreatDeal $great_deal)
+  {
+    $this->great_deal = $great_deal;
+    return $this;
+  }
 }

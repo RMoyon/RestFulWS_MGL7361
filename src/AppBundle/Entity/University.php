@@ -14,39 +14,75 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class University
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(name="id_university", type="integer")
-     * @ORM\GeneratedValue
-     */
-    private $idUniversity;
+  /**
+   * @ORM\Id
+   * @ORM\Column(type="integer")
+   * @ORM\GeneratedValue
+   */
+  private $id;
 
-    /**
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
-     * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
-     */
-    private $name;
+  /**
+   * @ORM\Column(type="string")
+   * @Assert\NotBlank()
+   * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
+   */
+  private $name;
 
-    public function getIdUniversity()
-    {
-        return $this->idUniversity;
-    }
+  /**
+   * @ORM\ManyToMany(targetEntity="GreatDeal", inversedBy="university")
+   * @var GreatDeal[]
+   */
+  protected $great_deal;
 
-    public function getName()
-    {
-        return $this->name;
-    }
+  /**
+   * @ORM\ManyToMany(targetEntity="User", inversedBy="University")
+   * @var User[]
+   */
+  protected $user;
 
-    public function setIdUniversity($idUniversity)
-    {
-        $this->idUniversity = $idUniversity;
-        return $this;
-    }
+################################################################
 
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
+  public function getId()
+  {
+    return $this->id;
+  }
+
+  public function getName()
+  {
+    return $this->name;
+  }
+
+  public function getGreatDeal()
+  {
+    return $this->great_deal;
+  }
+
+  public function getUser()
+  {
+    return $this->user;
+  }
+
+  public function setId($id)
+  {
+    $this->id = $id;
+    return $this;
+  }
+
+  public function setName($name)
+  {
+    $this->name = $name;
+    return $this;
+  }
+
+  public function setGreatDeal(GreatDeal $great_deal)
+  {
+    $this->great_deal = $great_deal;
+    return $this;
+  }
+
+  public function setUser(User $user)
+  {
+    $this->user = $user;
+    return $this;
+  }
 }
