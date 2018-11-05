@@ -22,14 +22,14 @@ class TakeAnInterest
 
   /**
    * @var User[]
-   * @ORM\ManyToOne(targetEntity="User")
+   * @ORM\ManyToOne(targetEntity="User", inversedBy="interests")
    * @ORM\JoinColumn(nullable=false)
    */
   private $users;
 
   /**
    * @var GreatDeal[]
-   * @ORM\ManyToOne(targetEntity="GreatDeal")
+   * @ORM\ManyToOne(targetEntity="GreatDeal", inversedBy="interests")
    * @ORM\JoinColumn(nullable=false)
    */
   private $great_deals;
@@ -77,5 +77,17 @@ class TakeAnInterest
   {
     $this->users = $users;
     return $this;
+  }
+
+################################################################
+
+  public function findByUsers($id)
+  {
+      return $this->createQueryBuilder('i')
+        ->innerJoin('i.users', 'u')
+        ->andWhere('u.id = :id')
+        ->setParameter('id', $id)
+        ->getQuery()
+        ->getResult();
   }
 }

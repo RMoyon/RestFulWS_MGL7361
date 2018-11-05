@@ -29,6 +29,17 @@ class TakeAnInterestController extends AbstractController
     }
 
     /**
+     * @Rest\View()
+     * @Rest\Get("/interestsByUser/{idUser}")
+     */
+    public function getInterestByUserAction(Request $request)
+    {
+        return $this->getDoctrine()
+          ->getRepository('AppBundle:TakeAnInterest')
+          ->findByUsers($request->get('idUser'));
+    }
+
+    /**
      * @Rest\View(statusCode=Response::HTTP_CREATED)
      * @Rest\Post("/interests")
      */
