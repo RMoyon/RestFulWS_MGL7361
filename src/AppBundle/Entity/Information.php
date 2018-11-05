@@ -73,7 +73,7 @@ class Information
 
   /**
    * @var GreatDeal[]
-   * @ORM\ManyToMany(targetEntity="GreatDeal", inversedBy="Information")
+   * @ORM\ManyToMany(targetEntity="GreatDeal", inversedBy="informations")
    * @ORM\JoinTable(
    *  name="contact",
    *  joinColumns={
@@ -133,11 +133,6 @@ class Information
     return $this->urlWebsite;
   }
 
-  public function getGreatDeals()
-  {
-    return $this->great_deals;
-  }
-
   public function setId($id)
   {
     $this->id = $id;
@@ -189,12 +184,6 @@ class Information
   public function seturlWebsite($urlWebsite)
   {
     $this->urlWebsite = $urlWebsite;
-    return $this;
-  }
-
-  public function setGreatDeals(GreatDeal $great_deals)
-  {
-    $this->great_deals = $great_deals;
     return $this;
   }
 

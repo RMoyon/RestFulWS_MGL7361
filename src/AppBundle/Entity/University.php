@@ -31,7 +31,7 @@ class University
   /**
    * @var GreatDeal[]
    *
-   * @ORM\ManyToMany(targetEntity="GreatDeal", inversedBy="University")
+   * @ORM\ManyToMany(targetEntity="GreatDeal", inversedBy="universities")
    * @ORM\JoinTable(
    *  name="availability",
    *  joinColumns={
@@ -72,16 +72,6 @@ class University
     return $this->name;
   }
 
-  public function getGreatDeals()
-  {
-    return $this->great_deals;
-  }
-
-  public function getUsers()
-  {
-    return $this->users;
-  }
-
   public function setId($id)
   {
     $this->id = $id;
@@ -91,18 +81,6 @@ class University
   public function setName($name)
   {
     $this->name = $name;
-    return $this;
-  }
-
-  public function setGreatDeals(GreatDeal $great_deals)
-  {
-    $this->great_deals = $great_deals;
-    return $this;
-  }
-
-  public function setUsers(User $users)
-  {
-    $this->users = $users;
     return $this;
   }
 }

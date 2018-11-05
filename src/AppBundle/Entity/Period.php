@@ -32,7 +32,7 @@ class Period
   private $endDate;
 
   /**
-   * @ORM\ManyToOne(targetEntity="GreatDeal", inversedBy="period")
+   * @ORM\ManyToOne(targetEntity="GreatDeal", inversedBy="periods")
    * @ORM\JoinColumn(nullable=false)
    * @var great_deal[]
    */
@@ -55,11 +55,6 @@ class Period
     return $this->endDate;
   }
 
-  public function getGreatDeals()
-  {
-    return $this->great_deals;
-  }
-
   public function setId($id)
   {
     $this->id = $id;
@@ -75,12 +70,6 @@ class Period
   public function setendDate($endDate)
   {
     $this->endDate = $endDate;
-    return $this;
-  }
-
-  public function setGreatDeals(GreatDeal $great_deals)
-  {
-    $this->great_deals = $great_deals;
     return $this;
   }
 }

@@ -51,7 +51,7 @@ class User
    * @ORM\OneToMany(targetEntity="TakeAnInterest", mappedBy="users")
    * @var TakeAnInterest[]
    */
-  protected $take_an_interest;
+  protected $interests;
 
   /**
    * @var University[]
@@ -86,16 +86,6 @@ class User
     return $this->firstName;
   }
 
-  public function getTakeAnInterest()
-  {
-    return $this->take_an_interest;
-  }
-
-  public function getUniversities()
-  {
-    return $this->universities;
-  }
-
   public function setId($id)
   {
     $this->id = $id;
@@ -123,24 +113,6 @@ class User
   public function setFirstName($firstName)
   {
     $this->firstName = $firstName;
-    return $this;
-  }
-
-  public function setGreatDeal(GreatDeal $great_deal)
-  {
-    $this->great_deal = $great_deal;
-    return $this;
-  }
-
-  public function setTakeAnInterest(TakeAnInterest $take_an_interest)
-  {
-    $this->take_an_interest = $take_an_interest;
-    return $this;
-  }
-
-  public function setUniversities(University $universities)
-  {
-    $this->universities = $universities;
     return $this;
   }
 }

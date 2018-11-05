@@ -18,19 +18,7 @@ INSERT INTO user (first_name, last_name, login, password) VALUES
 	('Hannibal', 'Lecter', 'LHommeEstBon', 'i+8jc5#Dg*$Y@7x%cAH4'),
 	('Billy', 'Loomis', 'Ghostface', 'WsXJ;]7LCV*gzphVN]Z,');
 
-INSERT INTO information (category, street_number, street_name, town, postal_code, email, phone_number, urlWebsite) VALUES
-	('Cinéma', '1430', 'Rue de Bleury', 'Montréal', 'QC H3A 2J1', NULL, '(514) 884-7187', NULL),
-	('Musée', '1380', 'Rue Sherbrook O', 'Montréal', 'QC H3G 1J5', NULL, NULL, 'https://www.mbam.qc.ca'),
-	('Restaurant', '150', 'Rue Sainte-Catherine O', 'Montréal', 'QC H2X 3Y2', NULL, '(514) 844-4684', 'https://www.mcdonalds.com'),
-	('Restaurant', '625', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1B7', NULL, '(514) 284-0848', 'https://www.mcdonalds.com'),
-	('Salle de spectacle', '407', 'Rue Saint-Pierre', 'Montréal', 'QC H2Y 2M3', NULL, NULL, ''),
-	('Salle de spectacle', '463', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1B1', NULL, '(514) 528-9766', 'lebalcon.ca');
-
-INSERT INTO period (great_deal_id, start_date, end_date) VALUES
-	(4, '2018-10-02 19:00:00', '2018-10-02 20:00:00'),
-	(5, '2018-09-19', '2018-09-27');
-
-INSERT INTO tag (name) VALUES
+	INSERT INTO tag (name) VALUES
 	('Fast-food'),
 	('Restaurant'),
 	('Burger'),
@@ -41,12 +29,36 @@ INSERT INTO tag (name) VALUES
 	('Concert'),
 	('Music');
 
-INSERT INTO university (name) VALUES
+	INSERT INTO university (name) VALUES
 	('UQAM'),
 	('ESG'),
 	('McGill');
 
-INSERT INTO information_great_deal (great_deal_id, information_id) VALUES
+	INSERT INTO information (category, street_number, street_name, town, postal_code, email, phone_number, urlWebsite) VALUES
+	('Cinéma', '1430', 'Rue de Bleury', 'Montréal', 'QC H3A 2J1', NULL, '(514) 884-7187', NULL),
+	('Musée', '1380', 'Rue Sherbrook O', 'Montréal', 'QC H3G 1J5', NULL, NULL, 'https://www.mbam.qc.ca'),
+	('Restaurant', '150', 'Rue Sainte-Catherine O', 'Montréal', 'QC H2X 3Y2', NULL, '(514) 844-4684', 'https://www.mcdonalds.com'),
+	('Restaurant', '625', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1B7', NULL, '(514) 284-0848', 'https://www.mcdonalds.com'),
+	('Salle de spectacle', '407', 'Rue Saint-Pierre', 'Montréal', 'QC H2Y 2M3', NULL, NULL, ''),
+	('Salle de spectacle', '463', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1B1', NULL, '(514) 528-9766', 'lebalcon.ca');
+
+	INSERT INTO study (user_id, university_id) VALUES
+	(1,1),
+	(2,1),
+	(3,1),
+	(4,1),
+	(4,2),
+	(5,3),
+	(6,2),
+	(8,3),
+	(9,1),
+	(10,2);
+
+INSERT INTO period (great_deals_id, start_date, end_date) VALUES
+	(4, '2018-10-02 19:00:00', '2018-10-02 20:00:00'),
+	(5, '2018-09-19', '2018-09-27');
+
+INSERT INTO contact (great_deal_id, information_id) VALUES
 	(1,1),
 	(2,1),
 	(3,2),
@@ -55,7 +67,7 @@ INSERT INTO information_great_deal (great_deal_id, information_id) VALUES
 	(5,5),
 	(5,6);
 
-INSERT INTO tag_great_deal (great_deal_id, tag_id) VALUES
+INSERT INTO have_tag (great_deal_id, tag_id) VALUES
 	(1,4),
 	(2,4),
 	(3,5),
@@ -67,12 +79,12 @@ INSERT INTO tag_great_deal (great_deal_id, tag_id) VALUES
 	(5,8),
 	(5,9);
 
-INSERT INTO take_an_interest (great_deal_id, user_id, type_of_interest) VALUES
+INSERT INTO take_an_interest (great_deals_id, users_id, type_of_interest) VALUES
 	(1,3,'Like'),
 	(4,10,'Participe'),
 	(5,5,'A participé');
 
-INSERT INTO university_great_deal (great_deal_id, university_id) VALUES
+INSERT INTO availability (great_deal_id, university_id) VALUES
 	(1,1),
 	(1,2),
 	(1,3),
@@ -83,15 +95,3 @@ INSERT INTO university_great_deal (great_deal_id, university_id) VALUES
 	(3,2),
 	(3,3),
 	(4,1);
-
-INSERT INTO university_user (user_id, university_id) VALUES
-	(1,1),
-	(2,1),
-	(3,1),
-	(4,1),
-	(4,2),
-	(5,3),
-	(6,2),
-	(8,3),
-	(9,1),
-	(10,2);

@@ -30,7 +30,7 @@ class Tag
 
   /**
    * @var GreatDeal[]
-   * @ORM\ManyToMany(targetEntity="GreatDeal", inversedBy="Tag")
+   * @ORM\ManyToMany(targetEntity="GreatDeal", inversedBy="tags")
    * @ORM\JoinTable(
    *  name="have_tag",
    *  joinColumns={
@@ -55,11 +55,6 @@ class Tag
     return $this->name;
   }
 
-  public function getGreatDeals()
-  {
-    return $this->great_deals;
-  }
-
   public function setId($id)
   {
     $this->id = $id;
@@ -69,12 +64,6 @@ class Tag
   public function setName($name)
   {
     $this->name = $name;
-    return $this;
-  }
-
-  public function setGreatDeals(GreatDeal $great_deals)
-  {
-    $this->great_deals = $great_deals;
     return $this;
   }
 }

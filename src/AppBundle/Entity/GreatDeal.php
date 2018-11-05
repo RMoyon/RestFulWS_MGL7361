@@ -45,34 +45,34 @@ class GreatDeal
   private $description;
 
   /**
-   * @ORM\ManyToMany(targetEntity="University", mappedBy="GreatDeal")
+   * @ORM\ManyToMany(targetEntity="University", mappedBy="great_deals")
    * @var University[]
    */
-  protected $university;
+  protected $universities;
 
   /**
-   * @ORM\ManyToMany(targetEntity="Information", mappedBy="GreatDeal")
+   * @ORM\ManyToMany(targetEntity="Information", mappedBy="great_deals")
    * @var Information[]
    */
-  protected $information;
+  protected $informations;
 
   /**
-   * @ORM\ManyToMany(targetEntity="Tag", mappedBy="GreatDeal")
+   * @ORM\ManyToMany(targetEntity="Tag", mappedBy="great_deals")
    * @var Tag[]
    */
-  protected $tag;
+  protected $tags;
 
   /**
-   * @ORM\OneToMany(targetEntity="Period", mappedBy="GreatDeal")
+   * @ORM\OneToMany(targetEntity="Period", mappedBy="great_deals")
    * @var Period[]
    */
-  protected $period;
+  protected $periods;
 
   /**
-   * @ORM\OneToMany(targetEntity="TakeAnInterest", mappedBy="GreatDeal")
+   * @ORM\OneToMany(targetEntity="TakeAnInterest", mappedBy="great_deals")
    * @var TakeAnInterest[]
    */
-  protected $take_an_interest;
+  protected $interests;
 
 ###############################################################
 
@@ -96,31 +96,6 @@ class GreatDeal
     return $this->description;
   }
 
-  public function getUniversity()
-  {
-    return $this->university;
-  }
-
-  public function getInformation()
-  {
-    return $this->information;
-  }
-
-  public function getTag()
-  {
-    return $this->tag;
-  }
-
-  public function getPeriod()
-  {
-    return $this->period;
-  }
-
-  public function getTakeAnInterest()
-  {
-    return $this->take_an_interest;
-  }
-
   public function setId($id)
   {
     $this->id = $id;
@@ -142,42 +117,6 @@ class GreatDeal
   public function setDescription($description)
   {
     $this->description = $description;
-    return $this;
-  }
-
-  public function setUser(User $user)
-  {
-    $this->user = $user;
-    return $this;
-  }
-
-  public function setUniversity(University $university)
-  {
-    $this->university = $university;
-    return $this;
-  }
-
-  public function setInformation(Information $information)
-  {
-    $this->informatio = $information;
-    return $this;
-  }
-
-  public function setTag(Tag $tag)
-  {
-    $this->tag = $tag;
-    return $this;
-  }
-
-  public function setPeriod(Period $period)
-  {
-    $this->period = $period;
-    return $this;
-  }
-
-  public function setTakeAnInterest(TakeAnInterest $take_an_interest)
-  {
-    $this->take_an_interest = $take_an_interest;
     return $this;
   }
 
