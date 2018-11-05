@@ -29,10 +29,19 @@ class Tag
   private $name;
 
   /**
-   * @ORM\ManyToMany(targetEntity="GreatDeal", inversedBy="Tag")
    * @var GreatDeal[]
+   * @ORM\ManyToMany(targetEntity="GreatDeal", inversedBy="Tag")
+   * @ORM\JoinTable(
+   *  name="have_tag",
+   *  joinColumns={
+   *    @ORM\JoinColumn(name="tag_id", referencedColumnName="id")
+   *  },
+   *  inverseJoinColumns={
+   *    @ORM\JoinColumn(name="great_deal_id", referencedColumnName="id")
+   *  }
+   * )
    */
-  protected $great_deal;
+  protected $great_deals;
 
 ################################################################
 
@@ -46,9 +55,9 @@ class Tag
     return $this->name;
   }
 
-  public function getGreatDeal()
+  public function getGreatDeals()
   {
-    return $this->great_deal;
+    return $this->great_deals;
   }
 
   public function setId($id)
@@ -63,9 +72,9 @@ class Tag
     return $this;
   }
 
-  public function setGreatDeal(GreatDeal $great_deal)
+  public function setGreatDeals(GreatDeal $great_deals)
   {
-    $this->great_deal = $great_deal;
+    $this->great_deals = $great_deals;
     return $this;
   }
 }

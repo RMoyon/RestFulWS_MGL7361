@@ -21,16 +21,18 @@ class TakeAnInterest
   protected $id;
 
   /**
+   * @var User[]
    * @ORM\ManyToOne(targetEntity="User")
    * @ORM\JoinColumn(nullable=false)
    */
-  private $user;
+  private $users;
 
   /**
+   * @var GreatDeal[]
    * @ORM\ManyToOne(targetEntity="GreatDeal")
    * @ORM\JoinColumn(nullable=false)
    */
-  private $great_deal;
+  private $great_deals;
 
   /**
    * @ORM\Column(type="string")
@@ -49,14 +51,14 @@ class TakeAnInterest
     return $this->type_of_interest;
   }
 
-  public function getUser()
+  public function getUsers()
   {
-    return $this->user;
+    return $this->users;
   }
 
-  public function getGreatDeal()
+  public function getGreatDeals()
   {
-    return $this->great_deal;
+    return $this->great_deals;
   }
 
   public function setId($id)
@@ -71,9 +73,9 @@ class TakeAnInterest
     return $this;
   }
 
-  public function setUser(User $user)
+  public function setUsers(User $users)
   {
-    $this->user = $user;
+    $this->users = $users;
     return $this;
   }
 }

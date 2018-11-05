@@ -16,3 +16,6 @@ university:
 period:
     type:     rest
     resource: AppBundle\Controller\PeriodController
+takeaninterest:
+    type:     rest
+    resource: AppBundle\Controller\TakeAnInterestController

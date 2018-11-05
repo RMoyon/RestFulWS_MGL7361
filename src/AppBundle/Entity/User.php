@@ -47,23 +47,17 @@ class User
    */
   private $firstName;
 
-  // /**
-  //  * @ORM\ManyToMany(targetEntity="GreatDeal", mappedBy="User")
-  //  * @var GreatDeal[]
-  //  */
-  // private $greatDeal;
-
   /**
-   * @ORM\OneToMany(targetEntity="TakeAnInterest", mappedBy="user")
+   * @ORM\OneToMany(targetEntity="TakeAnInterest", mappedBy="users")
    * @var TakeAnInterest[]
    */
   protected $take_an_interest;
 
   /**
-   * @ORM\ManyToMany(targetEntity="University", mappedBy="user")
    * @var University[]
+   * @ORM\ManyToMany(targetEntity="University", mappedBy="users")
    */
-  protected $university;
+  protected $universities;
 
 ###############################################################
 
@@ -92,19 +86,14 @@ class User
     return $this->firstName;
   }
 
-  public function getGreatDeal()
-  {
-    return $this->great_deal;
-  }
-
   public function getTakeAnInterest()
   {
     return $this->take_an_interest;
   }
 
-  public function getUniversity()
+  public function getUniversities()
   {
-    return $this->university;
+    return $this->universities;
   }
 
   public function setId($id)
@@ -149,9 +138,9 @@ class User
     return $this;
   }
 
-  public function setUniversity(University $university)
+  public function setUniversities(University $universities)
   {
-    $this->university = $university;
+    $this->universities = $universities;
     return $this;
   }
 }

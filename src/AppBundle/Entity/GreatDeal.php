@@ -96,11 +96,6 @@ class GreatDeal
     return $this->description;
   }
 
-  public function getUser()
-  {
-    return $this->user;
-  }
-
   public function getUniversity()
   {
     return $this->university;

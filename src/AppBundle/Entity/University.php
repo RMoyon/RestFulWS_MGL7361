@@ -29,16 +29,36 @@ class University
   private $name;
 
   /**
-   * @ORM\ManyToMany(targetEntity="GreatDeal", inversedBy="university")
    * @var GreatDeal[]
+   *
+   * @ORM\ManyToMany(targetEntity="GreatDeal", inversedBy="University")
+   * @ORM\JoinTable(
+   *  name="availability",
+   *  joinColumns={
+   *    @ORM\JoinColumn(name="university_id", referencedColumnName="id")
+   *  },
+   *  inverseJoinColumns={
+   *    @ORM\JoinColumn(name="great_deal_id", referencedColumnName="id")
+   *  }
+   * )
    */
-  protected $great_deal;
+  protected $great_deals;
 
   /**
-   * @ORM\ManyToMany(targetEntity="User", inversedBy="University")
    * @var User[]
+   *
+   * @ORM\ManyToMany(targetEntity="User", inversedBy="universities")
+   * @ORM\JoinTable(
+   *  name="study",
+   *  joinColumns={
+   *    @ORM\JoinColumn(name="university_id", referencedColumnName="id")
+   *  },
+   *  inverseJoinColumns={
+   *    @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+   *  }
+   * )
    */
-  protected $user;
+  protected $users;
 
 ################################################################
 
@@ -52,14 +72,14 @@ class University
     return $this->name;
   }
 
-  public function getGreatDeal()
+  public function getGreatDeals()
   {
-    return $this->great_deal;
+    return $this->great_deals;
   }
 
-  public function getUser()
+  public function getUsers()
   {
-    return $this->user;
+    return $this->users;
   }
 
   public function setId($id)
@@ -74,15 +94,15 @@ class University
     return $this;
   }
 
-  public function setGreatDeal(GreatDeal $great_deal)
+  public function setGreatDeals(GreatDeal $great_deals)
   {
-    $this->great_deal = $great_deal;
+    $this->great_deals = $great_deals;
     return $this;
   }
 
-  public function setUser(User $user)
+  public function setUsers(User $users)
   {
-    $this->user = $user;
+    $this->users = $users;
     return $this;
   }
 }
