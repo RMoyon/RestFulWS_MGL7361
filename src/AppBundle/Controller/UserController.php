@@ -58,6 +58,13 @@ class UserController extends AbstractController
      */
     public function removeUserAction(Request $request)
     {
+        $em = $this->getDoctrine()->getEntityManager();
+        $repository = $em->getRepository('AppBundle:TakeAnInterest');
+        $interests = $repository->findByUsers($request->get('idUser'));
+        foreach ($interests as $key => $value) {
+          $em->remove($value);
+        }
+        $em->flush();
         return $this->removeEntityAction("User", $request->get('idUser'));
     }
 }
