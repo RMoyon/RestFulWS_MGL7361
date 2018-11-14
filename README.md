@@ -1,7 +1,9 @@
 RestFulWS_MGL7361
 ========
 
-## Configuration
+Un simple projet REST sous symfony 3.
+
+## Prérequis
 
 1. Installation de PHP
   * Sous windows
@@ -33,13 +35,15 @@ Si sur MacOs, vraiment, bonne chance.
 http://localhost/phpmyadmin/
 ```
 
-5. Configurer le serveur
+## Configurer le serveur REST
+
+1. Initialiser le projet
 Dans l'invite de commande, dans la base du dossier RestFulWS_MGL7361
 ```
 composer install
 ```
 
-6. Créer la base de données
+2. Créer la base de données
 Dans l'invite de commande, dans la base du dossier RestFulWS_MGL7361
 ```
 php bin/console doctrine:database:create
@@ -47,12 +51,14 @@ php bin/console doctrine:schema:update --dump-sql --force
 php bin/console doctrine:database:import ScriptSQLInsert.sql
 ```
 
-7. Lancer le serveur
+Si vous n'arrivez pas à installer la base de données, vérifier que vos paramètres sont bien configurer dans le fichier `app/config/parameters.yml`
+
+3. Lancer le serveur
 ```
 php bin/console server:run
 ```
 
-8. Tester
+4. Tester
 ```
 127.0.0.1:8000/users
 ```
