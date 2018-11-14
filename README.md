@@ -9,7 +9,7 @@ Un simple projet REST sous symfony 3.
 
 Installer WAMP Server installera tous les prérequis pour utiliser l'application.
 
-Pour tester si WAMP est bien installé, allé à l'adresse `http://localhost/phpmyadmin/`.
+Pour tester si WAMP est bien installé, allez à l'adresse `http://localhost/phpmyadmin/`.
 Par défaut, le nom d'utilisateur est `root` et le mot de passe est vide.
 
 Il est recommandé d'utiliser la même version de PHP que WAMP. Pour voir la version de PHP installée sur windows, faire `php -v` dans l'invite de commande. Pour voir la version de PHP de WAMP, dans votre navigateur aller à l'adresse `localhost` ou `127.0.0.1`.
