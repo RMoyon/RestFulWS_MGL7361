@@ -38,12 +38,14 @@ http://localhost/phpmyadmin/
 ## Configurer le serveur REST
 
 1. Initialiser le projet
+
 Dans l'invite de commande, dans la base du dossier RestFulWS_MGL7361
 ```
 composer install
 ```
 
 2. Créer la base de données
+
 Dans l'invite de commande, dans la base du dossier RestFulWS_MGL7361
 ```
 php bin/console doctrine:database:create
