@@ -16,23 +16,16 @@ Par défaut, le nom d'utilisateur est `root` et le mot de passe est vide.
 
 ### Linux
 
-1. Installation de PHP
+1. Installer PHP
 
-2. Installation d'un serveur Apache
-```
-Si sur Linux, voir la documentation du système d'exploitation.
-```
+2. Installer un serveur Apache
 
-3. Installation de MySQL & phpMyAdmin
-```
-Si sur Linux, voir la documentation du système d'exploitation.
-```
+3. Installer MySQL & phpMyAdmin
 
 4. Ne pas oublier de tester phpMyAdmin
 ```
 http://localhost/phpmyadmin/
 ```
-Par défaut, le nom d'utilisateur est `root` et le mot de passe est vide.
 
 ## Configurer le serveur REST
 
