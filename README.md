@@ -34,6 +34,7 @@ Si sur MacOs, vraiment, bonne chance.
 ```
 http://localhost/phpmyadmin/
 ```
+Par défaut, le nom d'utilisateur est `root` et le mot de passe est vide.
 
 ## Configurer le serveur REST
 
