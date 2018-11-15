@@ -1,10 +1,10 @@
 <?php
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\User;
-use AppBundle\Form\Type\UserType;
 use AppBundle\Entity\AuthentificationTokens;
+use AppBundle\Entity\User;
 use AppBundle\Form\Type\AuthentificationTokensType;
+use AppBundle\Form\Type\UserType;
 use AppBundle\SymfonyAbstract\AbstractController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
@@ -54,7 +54,8 @@ class UserController extends AbstractController
         return $user;
     }
 
-    private function queryUserByLoginAndPassword($authTokens){
+    private function queryUserByLoginAndPassword($authTokens)
+    {
         $entityManager = $this->getEntityManager();
 
         $dql = 'SELECT u FROM AppBundle\Entity\User u WHERE u.login = :login AND u.password = :password';
@@ -100,7 +101,7 @@ class UserController extends AbstractController
         $repository = $em->getRepository('AppBundle:TakeAnInterest');
         $interests = $repository->findByUsers($request->get('idUser'));
         foreach ($interests as $key => $value) {
-          $em->remove($value);
+            $em->remove($value);
         }
         $em->flush();
         return $this->removeEntityAction("User", $request->get('idUser'));
