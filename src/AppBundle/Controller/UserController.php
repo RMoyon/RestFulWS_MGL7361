@@ -3,6 +3,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\UserType;
+use AppBundle\Entity\AuthentificationTokens;
+use AppBundle\Form\Type\AuthentificationTokensType;
 use AppBundle\SymfonyAbstract\AbstractController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,6 +28,42 @@ class UserController extends AbstractController
     public function getUserAction(Request $request)
     {
         return $this->getEntityAction("User", $request->get('idUser'));
+    }
+
+    /**
+     * @Rest\View()
+     * @Rest\Post("/users/auth")
+     */
+    public function postAuthAction(Request $request)
+    {
+        $authTokens = new AuthentificationTokens();
+        $form = $this->createForm(AuthentificationTokensType::class, $authTokens);
+
+        $form->submit($request->request->all());
+
+        if (!$form->isValid()) {
+            return $form;
+        }
+
+        $user = $this->queryUserByLoginAndPassword($authTokens);
+
+        if (empty($user)) {
+            return $this->send404Error();
+        }
+
+        return $user;
+    }
+
+    private function queryUserByLoginAndPassword($authTokens){
+        $entityManager = $this->getEntityManager();
+
+        $dql = 'SELECT u FROM AppBundle\Entity\User u WHERE u.login = :login AND u.password = :password';
+
+        $query = $entityManager->createQuery($dql)
+            ->setParameter('login', $authTokens->getLogin())
+            ->setParameter('password', $authTokens->getPassword());
+
+        return $query->execute();
     }
 
     /**
