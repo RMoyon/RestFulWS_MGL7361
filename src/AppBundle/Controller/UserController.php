@@ -51,7 +51,7 @@ class UserController extends AbstractController
             return $this->send404Error();
         }
 
-        return $user;
+        return $user[0];
     }
 
     private function queryUserByLoginAndPassword($authTokens)
