@@ -3,9 +3,20 @@ INSERT INTO great_deal (description, name, type_of_great_deal) VALUES
 	('Place à $6','Tarif étudiant Cinéma', 'Réduction'),
 	('Entrée à $18', 'Tarif étudiant mbam', 'Réduction'),
 	('Burger gratuit entre 19h-20h', 'Burger gratuit', 'Evenement'),
-	('RedBull Festival - Concert', 'RedBull Festival', 'Festival');
+	('RedBull Festival - Concert', 'RedBull Festival', 'Festival'),
+	('Black Friday - H&M', 'BF H&M', 'Réduction'),
+	('Black Friday - Hudson Bay', 'BF Hudson', 'Réduction'),
+	('Black Friday - Zara', 'BF Zara', 'Réduction'),
+	('Black Friday - Séphora', 'BF Sephora', 'Réduction'),
+	('Black Friday - Gap', 'BF Gap', 'Evenement'),
+	('Black Friday - Miniso', 'BF Miniso', 'Evenement'),
+	('Black Friday - Browns Chaussures', 'BF Browns', 'Réduction'),
+	('Black Friday - Trunkshop', 'BF Trunkshop', 'Réduction'),
+	('Black Friday - Lamarque', 'BF Lamarque', 'Réduction'),
+	('Black Friday - Armani', 'BF Armani', 'Festival');
 
 INSERT INTO user (first_name, last_name, login, password) VALUES
+	('Admin', 'Admin', 'admin', 'admin'),
 	('Freddy', 'Krueger', 'LeGriffeur', 'NgWEdi^5kJngbE#3fW+^'),
 	('Norman', 'Bates', 'Norman', 'QMRF&B:csS]HMj@:Feg#'),
 	('Jack', 'Torrance', 'Johnny', ',}T~|GT~yppMPdh9St4G'),
@@ -27,7 +38,10 @@ INSERT INTO user (first_name, last_name, login, password) VALUES
 	('Beaux arts'),
 	('Festival'),
 	('Concert'),
-	('Music');
+	('Music'),
+	('Vetement'),
+	('Parfum'),
+	('Chaussures');
 
 	INSERT INTO university (name) VALUES
 	('UQAM'),
@@ -40,7 +54,17 @@ INSERT INTO user (first_name, last_name, login, password) VALUES
 	('Restaurant', '150', 'Rue Sainte-Catherine O', 'Montréal', 'QC H2X 3Y2', NULL, '(514) 844-4684', 'https://www.mcdonalds.com'),
 	('Restaurant', '625', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1B7', NULL, '(514) 284-0848', 'https://www.mcdonalds.com'),
 	('Salle de spectacle', '407', 'Rue Saint-Pierre', 'Montréal', 'QC H2Y 2M3', NULL, NULL, ''),
-	('Salle de spectacle', '463', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1B1', NULL, '(514) 528-9766', 'lebalcon.ca');
+	('Salle de spectacle', '463', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1B1', NULL, '(514) 528-9766', 'lebalcon.ca'),
+	('Magasin', '450', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1A6', NULL, NULL, NULL),
+	('Magasin', '585', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 3Y5', NULL, NULL, NULL),
+	('Magasin', '2305', 'Chemin Rockland', 'Mont-Royal', 'QC H3P 3E9', NULL, NULL, NULL),
+	('Magasin', '7999', 'Boulevard Les-Galeries-d\'Anjou Suite# B16F', 'Montreal', 'QC H1M 1W9', NULL, NULL, NULL),
+	('Magasin', '9160', 'Boulevard Leduc', 'Brossard', 'QC J4Y 0E6', NULL, NULL, NULL),
+	('Magasin', '475', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1B1', NULL, NULL, NULL),
+	('Magasin', '2305', 'Rockland Rd Suite 2570', 'Montreal', 'Quebec H3P 3E9', NULL, NULL, NULL),
+	('Magasin', '263', 'Avenue du Mont-Royal E', 'Montréal', 'QC H2T 1P6', NULL, NULL, NULL),
+	('Magasin', '2000', 'Rue Peel', 'Montréal', 'QC H3A 2W5', NULL, NULL, NULL),
+	('Magasin', '1241', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3G 1P3', NULL, NULL, NULL),;
 
 	INSERT INTO study (user_id, university_id) VALUES
 	(1,1),
@@ -56,7 +80,18 @@ INSERT INTO user (first_name, last_name, login, password) VALUES
 
 INSERT INTO period (great_deals_id, start_date, end_date) VALUES
 	(4, '2018-10-02 19:00:00', '2018-10-02 20:00:00'),
-	(5, '2018-09-19', '2018-09-27');
+	(5, '2018-09-19', '2018-09-27'),
+	(6, '2018-11-23', '2018-11-25'),
+	(6, '2018-11-23', '2018-11-25'),
+	(7, '2018-11-23', '2018-11-25'),
+	(8, '2018-11-23', '2018-11-25'),
+	(9, '2018-11-23', '2018-11-25'),
+	(10, '2018-11-23', '2018-11-25'),
+	(11, '2018-11-23', '2018-11-25'),
+	(12, '2018-11-23', '2018-11-25'),
+	(13, '2018-11-23', '2018-11-25'),
+	(14, '2018-11-23', '2018-11-25'),
+	(15, '2018-11-23', '2018-11-25');
 
 INSERT INTO contact (great_deal_id, information_id) VALUES
 	(1,1),
@@ -65,7 +100,17 @@ INSERT INTO contact (great_deal_id, information_id) VALUES
 	(4,3),
 	(4,4),
 	(5,5),
-	(5,6);
+	(5,6),
+	(6,7),
+	(7,8),
+	(8,9),
+	(9,10),
+	(10,11),
+	(11,12),
+	(12,13),
+	(13,14),
+	(14,15),
+	(15,16);
 
 INSERT INTO have_tag (great_deal_id, tag_id) VALUES
 	(1,4),
@@ -77,7 +122,17 @@ INSERT INTO have_tag (great_deal_id, tag_id) VALUES
 	(4,3),
 	(5,7),
 	(5,8),
-	(5,9);
+	(5,9),
+	(6,10),
+	(7,10),
+	(8,10),
+	(9,11),
+	(10,10),
+	(11,10),
+	(12,12),
+	(13,10),
+	(14,10),
+	(15,10);
 
 INSERT INTO take_an_interest (great_deals_id, users_id, type_of_interest) VALUES
 	(1,3,'Like'),

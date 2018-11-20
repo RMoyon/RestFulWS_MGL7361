@@ -51,11 +51,6 @@ class TakeAnInterest
     return $this->type_of_interest;
   }
 
-  public function getUsers()
-  {
-    return $this->users;
-  }
-
   public function getGreatDeals()
   {
     return $this->great_deals;

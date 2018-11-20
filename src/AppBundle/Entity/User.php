@@ -101,6 +101,11 @@ class User
         return $this->universities;
     }
 
+    public function getInterests()
+    {
+      return $this->interests;
+    }
+
     public function setId($id)
     {
         $this->id = $id;

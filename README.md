@@ -58,3 +58,5 @@ php bin/console server:run
 ```
 127.0.0.1:8000/users
 ```
+
+Pour le test, l'installation d'un logiciel comme Postman est recommandé pour une plus grande lisibilité et facilité d'utilisation.

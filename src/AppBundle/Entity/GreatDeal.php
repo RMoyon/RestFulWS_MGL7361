@@ -96,6 +96,21 @@ class GreatDeal
     return $this->description;
   }
 
+  public function getInformations()
+  {
+    return $this->informations;
+  }
+
+  public function getTags()
+  {
+    return $this->tags;
+  }
+
+  public function getPeriods()
+  {
+    return $this->periods;
+  }
+
   public function setId($id)
   {
     $this->id = $id;
