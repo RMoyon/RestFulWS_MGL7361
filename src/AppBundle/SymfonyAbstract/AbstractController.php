@@ -4,6 +4,8 @@ namespace AppBundle\SymfonyAbstract;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Form\Type\LinkerType;
+use AppBundle\Entity\Linker;
 
 class AbstractController extends Controller
 {
@@ -92,5 +94,18 @@ class AbstractController extends Controller
     public function send404Error()
     {
         return \FOS\RestBundle\View\View::create(['message' => 'Impossible de trouver cette entité'], Response::HTTP_NOT_FOUND);
+    }
+
+    public function getLinker($request){
+        $linker = new Linker();
+        $form = $this->createForm(LinkerType::class, $linker);
+
+        $form->submit($request->request->all());
+
+        if (!$form->isValid()) {
+            return $form;
+        }
+
+        return $linker;
     }
 }

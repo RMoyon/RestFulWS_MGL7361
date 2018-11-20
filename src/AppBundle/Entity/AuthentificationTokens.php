@@ -8,12 +8,12 @@ class AuthentificationTokens
     /**
      * @Assert\NotBlank()
      */
-    protected $login;
+    private $login;
 
     /**
      * @Assert\NotBlank()
      */
-    protected $password;
+    private $password;
 
     public function getLogin()
     {

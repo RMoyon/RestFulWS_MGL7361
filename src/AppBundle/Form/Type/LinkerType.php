@@ -5,18 +5,18 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AuthentificationTokensType extends AbstractType
+class LinkerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('login')
-            ->add('password');
+        $builder->add('id')
+            ->add('inversedId');
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'AppBundle\Entity\AuthentificationTokens',
+            'data_class' => 'AppBundle\Entity\Linker',
             'csrf_protection' => false,
         ]);
     }

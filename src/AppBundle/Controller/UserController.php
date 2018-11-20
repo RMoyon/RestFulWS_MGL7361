@@ -2,6 +2,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\AuthentificationTokens;
+use AppBundle\Entity\Linker;
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\AuthentificationTokensType;
 use AppBundle\Form\Type\UserType;
@@ -97,13 +98,61 @@ class UserController extends AbstractController
      */
     public function removeUserAction(Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-        $repository = $em->getRepository('AppBundle:TakeAnInterest');
+        $repository = $this->getEntityRepository('TakeAnInterest');
         $interests = $repository->findByUsers($request->get('idUser'));
+
         foreach ($interests as $key => $value) {
             $em->remove($value);
         }
+
         $em->flush();
+
         return $this->removeEntityAction("User", $request->get('idUser'));
+    }
+
+    /**
+     * @Rest\View()
+     * @Rest\Post("/users/university/")
+     */
+    public function addUserAUniversityAction(Request $request)
+    {
+        return $this->updateUserUniversities($request, "add");
+    }
+
+    /**
+     * @Rest\View()
+     * @Rest\Delete("/users/university/")
+     */
+    public function removeUserAUniversityAction(Request $request)
+    {
+        return $this->updateUserUniversities($request, "remove");
+    }
+
+    public function updateUserUniversities($request, $action)
+    {
+        $linker = $this->getLinker($request);
+
+        if (!$linker instanceof Linker) {
+            return $linker;
+        }
+
+        $user = $this->getOneInstanceOfOneEntityById("User", $linker->getId());
+        $university = $this->getOneInstanceOfOneEntityById("University", $linker->getInversedId());
+
+        if (empty($user) || empty($university)) {
+            return $this->send404Error();
+        }
+
+        if ($action == "add") {
+            $user->addUniversity($university);
+        } else if ($action == "remove") {
+            $user->removeUniversity($university);
+        }
+
+        $entityManager = $this->getEntityManager();
+        $entityManager->merge($user);
+        $entityManager->flush();
+
+        return $user->getUniversities();
     }
 }
