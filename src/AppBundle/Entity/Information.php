@@ -53,6 +53,18 @@ class Information
   private $postalCode;
 
   /**
+   * @ORM\Column(name="latitude", type="string", nullable=false)
+   * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
+   */
+  private $latitude;
+
+  /**
+   * @ORM\Column(name="longitude", type="string", nullable=false)
+   * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
+   */
+  private $longitude;
+
+  /**
    * @ORM\Column(name="email", type="string", nullable=true)
    * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
    */
@@ -116,6 +128,16 @@ class Information
   public function getPostalCode()
   {
     return $this->postalCode;
+  }
+
+  public function getLatitude()
+  {
+    return $this->latitude;
+  }
+
+  public function getLogitude()
+  {
+    return $this->longitude;
   }
 
   public function getEmail()

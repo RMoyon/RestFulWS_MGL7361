@@ -14,6 +14,8 @@ class InformationType extends AbstractType
             ->add('streetName')
             ->add('town')
             ->add('postalCode')
+            ->add('latitude')
+            ->add('longitude')
             ->add('email')
             ->add('phoneNumber')
             ->add('urlWebsite');
