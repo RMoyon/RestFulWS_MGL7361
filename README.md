@@ -49,6 +49,8 @@ php bin/console doctrine:database:import ScriptSQLInsert.sql
 
 Si vous n'arrivez pas à installer la base de données, vérifier que vos paramètres sont bien configurer dans le fichier `app/config/parameters.yml`
 
+  - Pour réinitialiser la base de données faire `php bin/console doctrine:database:drop --force`. Ensuite, refaire la procédure ci dessus.
+
 3. Lancer le serveur
 ```
 php bin/console server:run
