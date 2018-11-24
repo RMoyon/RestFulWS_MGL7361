@@ -108,7 +108,7 @@ class GreatDealController extends AbstractController
           }
         }
 
-        if (sizeof($periods) == $returnNumber) {
+        if (sizeof($returnArray) == $returnNumber) {
           return $returnArray;
         }
       }
