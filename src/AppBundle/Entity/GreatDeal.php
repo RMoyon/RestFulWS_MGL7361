@@ -96,10 +96,10 @@ class GreatDeal
     return $this->description;
   }
 
-  public function getInformations()
-  {
-    return $this->informations;
-  }
+  // public function getInformations()
+  // {
+  //   return $this->informations;
+  // }
 
   public function getTags()
   {

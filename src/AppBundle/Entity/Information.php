@@ -155,6 +155,11 @@ class Information
     return $this->urlWebsite;
   }
 
+  public function getGreatDeals()
+  {
+    return $this->great_deals;
+  }
+
   public function setId($id)
   {
     $this->id = $id;
