@@ -7,21 +7,25 @@ class MapPoints
 {
     /**
      * @Assert\NotBlank()
+     * type = float
      */
     private $top;
 
     /**
      * @Assert\NotBlank()
+     * type = float
      */
     private $bottom;
 
     /**
      * @Assert\NotBlank()
+     * type = float
      */
     private $left;
 
     /**
      * @Assert\NotBlank()
+     * type = float
      */
     private $right;
 

@@ -53,13 +53,13 @@ class Information
   private $postalCode;
 
   /**
-   * @ORM\Column(name="latitude", type="string", nullable=false)
+   * @ORM\Column(name="latitude", type="float", nullable=false)
    * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
    */
   private $latitude;
 
   /**
-   * @ORM\Column(name="longitude", type="string", nullable=false)
+   * @ORM\Column(name="longitude", type="float", nullable=false)
    * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
    */
   private $longitude;
@@ -135,7 +135,7 @@ class Information
     return $this->latitude;
   }
 
-  public function getLogitude()
+  public function getLongitude()
   {
     return $this->longitude;
   }

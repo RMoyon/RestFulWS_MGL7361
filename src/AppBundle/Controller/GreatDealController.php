@@ -56,8 +56,6 @@ class GreatDealController extends AbstractController
           return $form;
       }
 
-      // return $this->closestGreatDealsQuery($map);;
-
       $result = $this->closestGreatDealsQuery($map);
 
       return $this->closestTimedGreatDeals($result, $map->getReturnNumber());
@@ -74,7 +72,7 @@ class GreatDealController extends AbstractController
       $dql  = 'SELECT g, '.$formule;
       $dql .= ' FROM AppBundle\Entity\GreatDeal g';
       $dql .= ' JOIN g.informations i';
-      $dql .= ' WHERE i.latitude < :top AND i.latitude > :bottom AND i.longitude < :right AND i.longitude > :left';
+      $dql .= ' WHERE i.latitude < :top AND i.latitude > :bottom AND i.longitude > :left AND i.longitude < :right';
       $dql .= ' ORDER BY distance ASC';
 
       $query = $entityManager->createQuery($dql)
