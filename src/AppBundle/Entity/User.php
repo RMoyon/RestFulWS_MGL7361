@@ -142,6 +142,11 @@ class User
         return $this;
     }
 
+    public function setInterests($interests){
+        $this->interests = $interests;
+        return $this;
+    }
+
     public function addUniversity($university)
     {
         $this->universities->add($university);
