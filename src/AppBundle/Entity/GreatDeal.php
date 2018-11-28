@@ -51,10 +51,10 @@ class GreatDeal
   protected $universities;
 
   /**
-   * @ORM\ManyToMany(targetEntity="Information", mappedBy="great_deals")
-   * @var Information[]
+   * @ORM\ManyToMany(targetEntity="Place", mappedBy="great_deals")
+   * @var Place[]
    */
-  protected $informations;
+  protected $places;
 
   /**
    * @ORM\ManyToMany(targetEntity="Tag", mappedBy="great_deals")
@@ -96,10 +96,10 @@ class GreatDeal
     return $this->description;
   }
 
-  public function getInformations()
-  {
-    return $this->informations;
-  }
+  // public function getPlaces()
+  // {
+  //   return $this->Places;
+  // }
 
   public function getTags()
   {

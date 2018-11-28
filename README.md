@@ -1,7 +1,7 @@
 RestFulWS_MGL7361
 ========
 
-Un simple projet REST sous symfony 3.
+Un serveur REST sous symfony 3. La description du système est dans le wiki.
 
 ## Prérequis
 

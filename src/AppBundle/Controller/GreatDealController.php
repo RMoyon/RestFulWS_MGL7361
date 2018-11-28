@@ -2,9 +2,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\GreatDeal;
-use AppBundle\Entity\MapPoints;
+use AppBundle\Entity\UserPoint;
 use AppBundle\Form\Type\GreatDealType;
-use AppBundle\Form\Type\MapPointsType;
+use AppBundle\Form\Type\UserPointType;
 use AppBundle\SymfonyAbstract\AbstractController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,8 +47,8 @@ class GreatDealController extends AbstractController
       * @Rest\Post("/greatDealsClosest")
       */
     public function postGreatDealsClosestAction(Request $request) {
-      $map = new MapPoints();
-      $form = $this->createForm(MapPointsType::class, $map);
+      $userPoint = new UserPoint();
+      $form = $this->createForm(UserPointType::class, $userPoint);
 
       $form->submit($request->request->all());
 
@@ -56,53 +56,48 @@ class GreatDealController extends AbstractController
           return $form;
       }
 
-      $result = $this->closestGreatDealsQuery($map);
+      $result = $this->closestGreatDealsQuery($userPoint);
 
-      return $this->closestTimedGreatDeals($result, $map->getReturnNumber());
+      return $this->closestTimedGreatDeals($result, $userPoint->getReturnNumber());
     }
 
-    private function closestGreatDealsQuery(MapPoints $map)
+    private function closestGreatDealsQuery(UserPoint $point)
     {
-      $latitude = ($map->getTop() + $map->getBottom())/2;
-      $longitude = ($map->getLeft() + $map->getRight())/2;
-
-      $formule = '((ACOS(SIN(:lat * PI() / 180) * SIN(i.latitude * PI() / 180) + COS(:lat * PI() / 180) * COS(i.latitude * PI() / 180) * COS((:lng - i.longitude) * PI() / 180)) * 180 / PI()) * 60 * 1.1515) as distance';
+      $formule = '((ACOS(SIN(:lat * PI() / 180) * SIN(i.latitude * PI() / 180) + COS(:lat * PI() / 180) * COS(i.latitude * PI() / 180) * COS((:lng - i.longitude) * PI() / 180)) * 180 / PI()) * 60 * 1.1515)';
 
       $entityManager = $this->getEntityManager();
-      $dql  = 'SELECT g, '.$formule;
+      $dql  = 'SELECT g';
       $dql .= ' FROM AppBundle\Entity\GreatDeal g';
-      $dql .= ' JOIN g.informations i';
-      $dql .= ' WHERE i.latitude < :top AND i.latitude > :bottom AND i.longitude > :left AND i.longitude < :right';
-      $dql .= ' ORDER BY distance ASC';
+      $dql .= ' JOIN g.places i';
+      $dql .= ' ORDER BY '.$formule.' ASC';
 
       $query = $entityManager->createQuery($dql)
-        ->setParameter('lat', $latitude)
-        ->setParameter('lng', $longitude)
-        ->setParameter('top', $map->getTop())
-        ->setParameter('bottom', $map->getBottom())
-        ->setParameter('left', $map->getLeft())
-        ->setParameter('right', $map->getRight());
+        ->setParameter('lat', $point->getLatitude())
+        ->setParameter('lng', $point->getLongitude());
 
       return $query->execute();
     }
 
-    private function closestTimedGreatDeals($result, string $returnNumber)
+    private function closestTimedGreatDeals($greatDeal, string $returnNumber)
     {
-      $result;
       $returnArray = array();
-      foreach ($result as $greatDeal) {
-        if (sizeof($greatDeal[0]->getPeriods()) == 0) {
-          array_push($returnArray, $greatDeal);
+      for ($i=0; $i < sizeof($greatDeal); $i++) {
+        if (sizeof($greatDeal[$i]->getPeriods()) == 0) {
+          if (!in_array($greatDeal[$i], $returnArray)) {
+            array_push($returnArray, $greatDeal[$i]);
+          }
         }
 
-        $periods = $greatDeal[0]->getPeriods();
+        $periods = $greatDeal[$i]->getPeriods();
         $date = strtotime(date('Y-m-d h:i:s'));
 
-        for ($i=0; $i < sizeof($periods); $i++) {
-          $startDate = $periods[$i]->getStartDate()->getTimestamp();
-          $endDate = $periods[$i]->getEndDate()->getTimestamp();
+        for ($y=0; $y < sizeof($periods); $y++) {
+          $startDate = $periods[$y]->getStartDate()->getTimestamp();
+          $endDate = $periods[$y]->getEndDate()->getTimestamp();
           if ($startDate < $date && $endDate > $date) {
-            array_push($returnArray, $greatDeal);
+            if (!in_array($greatDeal[$i], $returnArray)) {
+              array_push($returnArray, $greatDeal[$i]);
+            }
           }
         }
 

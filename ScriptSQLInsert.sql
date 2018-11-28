@@ -48,7 +48,7 @@ INSERT INTO user (first_name, last_name, login, password) VALUES
 	('ESG'),
 	('McGill');
 
-	INSERT INTO information (category, street_number, street_name, town, postal_code, latitude, longitude, email, phone_number, urlWebsite) VALUES
+	INSERT INTO place (category, street_number, street_name, town, postal_code, latitude, longitude, email, phone_number, urlWebsite) VALUES
 	('Cinéma', '1430', 'Rue de Bleury', 'Montréal', 'QC H3A 2J1', '45.506541', '-73.567888' ,NULL, '(514) 884-7187', NULL),
 	('Musée', '1380', 'Rue Sherbrook O', 'Montréal', 'QC H3G 1J5', '45.498676', '-73.579333', NULL, NULL, 'https://www.mbam.qc.ca'),
 	('Restaurant', '150', 'Rue Sainte-Catherine O', 'Montréal', 'QC H2X 3Y2', '45.507975', '-73.565158', NULL, '(514) 844-4684', 'https://www.mcdonalds.com'),
@@ -93,7 +93,7 @@ INSERT INTO period (great_deals_id, start_date, end_date) VALUES
 	(14, '2018-11-23', '2018-11-25'),
 	(15, '2018-11-23', '2018-11-25');
 
-INSERT INTO contact (great_deal_id, information_id) VALUES
+INSERT INTO contact (great_deal_id, Place_id) VALUES
 	(1,1),
 	(2,1),
 	(3,2),

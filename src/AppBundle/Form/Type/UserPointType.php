@@ -5,26 +5,19 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class InformationType extends AbstractType
+class UserPointType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('category')
-            ->add('streetNumber')
-            ->add('streetName')
-            ->add('town')
-            ->add('postalCode')
-            ->add('latitude')
+        $builder->add('latitude')
             ->add('longitude')
-            ->add('email')
-            ->add('phoneNumber')
-            ->add('urlWebsite');
+            ->add('returnNumber');
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'AppBundle\Entity\Information',
+            'data_class' => 'AppBundle\Entity\UserPoint',
             'csrf_protection' => false,
         ]);
     }
