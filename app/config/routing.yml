@@ -4,9 +4,9 @@ user:
 greatdeal:
     type:     rest
     resource: AppBundle\Controller\GreatDealController
-information:
+place:
     type:     rest
-    resource: AppBundle\Controller\InformationController
+    resource: AppBundle\Controller\PlaceController
 tag:
     type:     rest
     resource: AppBundle\Controller\TagController

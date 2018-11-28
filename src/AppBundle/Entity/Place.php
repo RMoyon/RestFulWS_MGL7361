@@ -6,9 +6,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="information")
+ * @ORM\Table(name="place")
  */
-class Information
+class Place
 {
   /**
    * @ORM\Id
@@ -85,11 +85,11 @@ class Information
 
   /**
    * @var GreatDeal[]
-   * @ORM\ManyToMany(targetEntity="GreatDeal", inversedBy="informations")
+   * @ORM\ManyToMany(targetEntity="GreatDeal", inversedBy="Places")
    * @ORM\JoinTable(
    *  name="contact",
    *  joinColumns={
-   *    @ORM\JoinColumn(name="information_id", referencedColumnName="id")
+   *    @ORM\JoinColumn(name="Place_id", referencedColumnName="id")
    *  },
    *  inverseJoinColumns={
    *    @ORM\JoinColumn(name="great_deal_id", referencedColumnName="id")
