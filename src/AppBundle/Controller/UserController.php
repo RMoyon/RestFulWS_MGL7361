@@ -98,14 +98,15 @@ class UserController extends AbstractController
      */
     public function removeUserAction(Request $request)
     {
+        $entityManager = $this->getEntityManager();
         $repository = $this->getEntityRepository('TakeAnInterest');
         $interests = $repository->findByUsers($request->get('idUser'));
 
         foreach ($interests as $key => $value) {
-            $em->remove($value);
+            $entityManager->remove($value);
         }
 
-        $em->flush();
+        $entityManager->flush();
 
         return $this->removeEntityAction("User", $request->get('idUser'));
     }
