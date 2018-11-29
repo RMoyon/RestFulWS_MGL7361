@@ -44,7 +44,7 @@ class GreatDealController extends AbstractController
 
     /**
      * @Rest\View()
-     * @Rest\Post("/greatDealsClosest")
+     * @Rest\Post("/greatdeals/closest")
      */
     public function postGreatDealsClosestAction(Request $request)
     {

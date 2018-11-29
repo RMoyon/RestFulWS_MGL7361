@@ -14,7 +14,7 @@ class PlaceController extends AbstractController
 {
     /**
      * @Rest\View()
-     * @Rest\Get("/Places")
+     * @Rest\Get("/places")
      */
     public function getPlacesAction(Request $request)
     {
@@ -23,7 +23,7 @@ class PlaceController extends AbstractController
 
     /**
      * @Rest\View()
-     * @Rest\Get("/Places/{idPlace}")
+     * @Rest\Get("/places/{idPlace}")
      */
     public function getPlaceAction(Request $request)
     {
@@ -32,7 +32,7 @@ class PlaceController extends AbstractController
 
     /**
      * @Rest\View()
-     * @Rest\Post("/placesClosest")
+     * @Rest\Post("/places/closest")
      */
     public function postPlacesClosestAction(Request $request)
     {
@@ -110,7 +110,7 @@ class PlaceController extends AbstractController
 
     /**
      * @Rest\View(statusCode=Response::HTTP_CREATED)
-     * @Rest\Post("/Places")
+     * @Rest\Post("/places")
      */
     public function postPlaceAction(Request $request)
     {
@@ -122,7 +122,7 @@ class PlaceController extends AbstractController
 
     /**
      * @Rest\View()
-     * @Rest\Patch("/Places/{idPlace}")
+     * @Rest\Patch("/places/{idPlace}")
      */
     public function patchPlaceAction(Request $request)
     {
@@ -134,7 +134,7 @@ class PlaceController extends AbstractController
 
     /**
      * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
-     * @Rest\Delete("/Places/{idPlace}")
+     * @Rest\Delete("/places/{idPlace}")
      */
     public function removePlaceAction(Request $request)
     {
