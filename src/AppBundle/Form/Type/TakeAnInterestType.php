@@ -1,10 +1,10 @@
 <?php
 namespace AppBundle\Form\Type;
 
+use AppBundle\Form\Type\GreatDealType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use AppBundle\Form\Type\GreatDealType;
 
 class TakeAnInterestType extends AbstractType
 {

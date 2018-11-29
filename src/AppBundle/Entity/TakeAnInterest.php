@@ -66,7 +66,8 @@ class TakeAnInterest
         return $this;
     }
 
-    public function setGreatDeals($greatDeals){
+    public function setGreatDeals($greatDeals)
+    {
         $this->greatDeals = $greatDeals;
         return $this;
     }

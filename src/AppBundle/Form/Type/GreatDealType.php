@@ -1,12 +1,12 @@
 <?php
 namespace AppBundle\Form\Type;
 
+use AppBundle\Form\Type\PeriodType;
+use AppBundle\Form\Type\TagType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use AppBundle\Form\Type\TagType;
-use AppBundle\Form\Type\PeriodType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class GreatDealType extends AbstractType
 {
