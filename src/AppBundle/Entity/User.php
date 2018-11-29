@@ -103,7 +103,7 @@ class User
 
     public function getInterests()
     {
-      return $this->interests;
+        return $this->interests;
     }
 
     public function setId($id)
@@ -142,7 +142,8 @@ class User
         return $this;
     }
 
-    public function setInterests($interests){
+    public function setInterests($interests)
+    {
         $this->interests = $interests;
         return $this;
     }

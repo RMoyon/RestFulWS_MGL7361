@@ -1,8 +1,6 @@
 <?php
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\TakeAnInterest;
-use AppBundle\Form\Type\TakeAnInterestType;
 use AppBundle\SymfonyAbstract\AbstractController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,8 +33,8 @@ class TakeAnInterestController extends AbstractController
     public function getInterestByUserAction(Request $request)
     {
         return $this->getDoctrine()
-          ->getRepository('AppBundle:TakeAnInterest')
-          ->findByUsers($request->get('idUser'));
+            ->getRepository('AppBundle:TakeAnInterest')
+            ->findByUsers($request->get('idUser'));
     }
 
     /**
