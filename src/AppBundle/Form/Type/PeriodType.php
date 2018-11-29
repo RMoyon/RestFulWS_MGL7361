@@ -9,7 +9,8 @@ class PeriodType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('startDate', 'Symfony\Component\Form\Extension\Core\Type\DateTimeType', ['widget' => 'single_text'])
+        $builder->add('id')
+            ->add('startDate', 'Symfony\Component\Form\Extension\Core\Type\DateTimeType', ['widget' => 'single_text'])
             ->add('endDate', 'Symfony\Component\Form\Extension\Core\Type\DateTimeType', ['widget' => 'single_text']);
     }
 

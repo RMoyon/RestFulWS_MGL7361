@@ -4,13 +4,15 @@ namespace AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use AppBundle\Form\Type\GreatDealType;
 
 class TakeAnInterestType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('typeOfTakeAnInterest')
-            ->add('type_of_interest');
+        $builder->add('id')
+            ->add('typeOfInterest')
+            ->add('greatDeals', GreatDealType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

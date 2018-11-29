@@ -30,12 +30,12 @@ class TakeAnInterest
      * @ORM\ManyToOne(targetEntity="GreatDeal", inversedBy="interests")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $great_deals;
+    private $greatDeals;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $type_of_interest;
+    private $typeOfInterest;
 
 ################################################################
 
@@ -46,12 +46,12 @@ class TakeAnInterest
 
     public function getTypeOfInterest()
     {
-        return $this->type_of_interest;
+        return $this->typeOfInterest;
     }
 
     public function getGreatDeals()
     {
-        return $this->great_deals;
+        return $this->greatDeals;
     }
 
     public function setId($id)
@@ -60,9 +60,14 @@ class TakeAnInterest
         return $this;
     }
 
-    public function setTypeOfInterest($type_of_interest)
+    public function setTypeOfInterest($typeOfInterest)
     {
-        $this->type_of_interest = $type_of_interest;
+        $this->typeOfInterest = $typeOfInterest;
+        return $this;
+    }
+
+    public function setGreatDeals($greatDeals){
+        $this->greatDeals = $greatDeals;
         return $this;
     }
 
