@@ -10,6 +10,7 @@ class PlaceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('category')
+            ->add('name')
             ->add('streetNumber')
             ->add('streetName')
             ->add('town')

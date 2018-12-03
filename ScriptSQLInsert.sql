@@ -48,23 +48,23 @@ INSERT INTO user (first_name, last_name, login, password) VALUES
 	('ESG'),
 	('McGill');
 
-	INSERT INTO place (category, street_number, street_name, town, postal_code, latitude, longitude, email, phone_number, urlWebsite) VALUES
-	('Cinéma', '1430', 'Rue de Bleury', 'Montréal', 'QC H3A 2J1', '45.506541', '-73.567888' ,NULL, '(514) 884-7187', NULL),
-	('Musée', '1380', 'Rue Sherbrook O', 'Montréal', 'QC H3G 1J5', '45.498676', '-73.579333', NULL, NULL, 'https://www.mbam.qc.ca'),
-	('Restaurant', '150', 'Rue Sainte-Catherine O', 'Montréal', 'QC H2X 3Y2', '45.507975', '-73.565158', NULL, '(514) 844-4684', 'https://www.mcdonalds.com'),
-	('Restaurant', '625', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1B7', '45.503991', '-73.569585', NULL, '(514) 284-0848', 'https://www.mcdonalds.com'),
-	('Salle de spectacle', '407', 'Rue Saint-Pierre', 'Montréal', 'QC H2Y 2M3', '45.501599', '-73.556225', NULL, NULL, ''),
-	('Salle de spectacle', '463', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1B1', '45.505506', '-73.568747', NULL, '(514) 528-9766', 'lebalcon.ca'),
-	('Magasin', '450', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1A6', '45.505364', '-73.567720', NULL, NULL, NULL),
-	('Magasin', '585', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 3Y5', '45.504281', '-73.569262', NULL, NULL, NULL),
-	('Magasin', '2305', 'Chemin Rockland', 'Mont-Royal', 'QC H3P 3E9', '45.527943', '-73.648808', NULL, NULL, NULL),
-	('Magasin', '7999', 'Boulevard Les-Galeries-d\'Anjou Suite# B16F', 'Montreal', 'QC H1M 1W9', '45.600999', '-73.565054', NULL, NULL, NULL),
-	('Magasin', '9160', 'Boulevard Leduc', 'Brossard', 'QC J4Y 0E6', '45.447326', '-73.435861', NULL, NULL, NULL),
-	('Magasin', '475', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1B1', '45.5049335', '-73.5704852', NULL, NULL, NULL),
-	('Magasin', '2305', 'Rockland Rd Suite 2570', 'Montreal', 'Quebec H3P 3E9', '45.5282005', '-73.6503124', NULL, NULL, NULL),
-	('Magasin', '263', 'Avenue du Mont-Royal E', 'Montréal', 'QC H2T 1P6', '45.5225929', '-73.5864341', NULL, NULL, NULL),
-	('Magasin', '2000', 'Rue Peel', 'Montréal', 'QC H3A 2W5', '45.500911', '-73.5773525', NULL, NULL, NULL),
-	('Magasin', '1241', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3G 1P3', '45.4982999', '-73.5770252', NULL, NULL, NULL);
+	INSERT INTO place (category, name, street_number, street_name, town, postal_code, latitude, longitude, email, phone_number, urlWebsite) VALUES
+	('Cinéma', 'Cinéma Impérial', '1430', 'Rue de Bleury', 'Montréal', 'QC H3A 2J1', '45.506541', '-73.567888' ,NULL, '(514) 884-7187', NULL),
+	('Musée', 'Musée des beaux arts', '1380', 'Rue Sherbrook O', 'Montréal', 'QC H3G 1J5', '45.498676', '-73.579333', NULL, NULL, 'https://www.mbam.qc.ca'),
+	('Restaurant', 'McDonalds', '150', 'Rue Sainte-Catherine O', 'Montréal', 'QC H2X 3Y2', '45.507975', '-73.565158', NULL, '(514) 844-4684', 'https://www.mcdonalds.com'),
+	('Restaurant', 'McDonalds', '625', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1B7', '45.503991', '-73.569585', NULL, '(514) 284-0848', 'https://www.mcdonalds.com'),
+	('Salle de spectacle', 'Centre Phi', '407', 'Rue Saint-Pierre', 'Montréal', 'QC H2Y 2M3', '45.501599', '-73.556225', NULL, NULL, ''),
+	('Salle de spectacle', 'Le Balcon', '463', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1B1', '45.505506', '-73.568747', NULL, '(514) 528-9766', 'lebalcon.ca'),
+	('Magasin', 'H&M', '450', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1A6', '45.505364', '-73.567720', NULL, NULL, NULL),
+	('Magasin', 'La Baie D\'Hudson', '585', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 3Y5', '45.504281', '-73.569262', NULL, NULL, NULL),
+	('Magasin', 'Zara', '2305', 'Chemin Rockland', 'Mont-Royal', 'QC H3P 3E9', '45.527943', '-73.648808', NULL, NULL, NULL),
+	('Magasin', 'Séphora', '7999', 'Boulevard Les-Galeries-d\'Anjou Suite# B16F', 'Montreal', 'QC H1M 1W9', '45.600999', '-73.565054', NULL, NULL, NULL),
+	('Magasin', 'Gap', '9160', 'Boulevard Leduc', 'Brossard', 'QC J4Y 0E6', '45.447326', '-73.435861', NULL, NULL, NULL),
+	('Magasin', 'Miniso', '475', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3B 1B1', '45.5049335', '-73.5704852', NULL, NULL, NULL),
+	('Magasin', 'Browns Chaussures', '2305', 'Rockland Rd Suite 2570', 'Montreal', 'Quebec H3P 3E9', '45.5282005', '-73.6503124', NULL, NULL, NULL),
+	('Magasin', 'Trunkshop', '263', 'Avenue du Mont-Royal E', 'Montréal', 'QC H2T 1P6', '45.5225929', '-73.5864341', NULL, NULL, NULL),
+	('Magasin', 'Lamarque', '2000', 'Rue Peel', 'Montréal', 'QC H3A 2W5', '45.500911', '-73.5773525', NULL, NULL, NULL),
+	('Magasin', 'Armani', '1241', 'Rue Sainte-Catherine O', 'Montréal', 'QC H3G 1P3', '45.4982999', '-73.5770252', NULL, NULL, NULL);
 
 	INSERT INTO study (user_id, university_id) VALUES
 	(1,1),

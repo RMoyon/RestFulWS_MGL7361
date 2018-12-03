@@ -26,6 +26,13 @@ class Place
   private $category;
 
   /**
+   * @ORM\Column(name="name", type="string")
+   * @Assert\NotBlank()
+   * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
+   */
+  private $name;
+
+  /**
    * @ORM\Column(name="street_number", type="integer")
    * @Assert\NotBlank()
    * @Assert\Type("integer", message="Cette valeur devrait être du type {{ type }}")
@@ -110,6 +117,11 @@ class Place
     return $this->category;
   }
 
+  public function getName()
+  {
+    return $this->name;
+  }
+
   public function getStreetNumber()
   {
     return $this->streetNumber;
@@ -169,6 +181,12 @@ class Place
   public function setCategory($category)
   {
     $this->category = $category;
+    return $this;
+  }
+
+  public function setName($name)
+  {
+    $this->name = $name;
     return $this;
   }
 
