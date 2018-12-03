@@ -54,13 +54,13 @@ class Place
 
   /**
    * @ORM\Column(name="latitude", type="float", nullable=false)
-   * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
+   * @Assert\Type("float", message="Cette valeur devrait être du type {{ type }}")
    */
   private $latitude;
 
   /**
    * @ORM\Column(name="longitude", type="float", nullable=false)
-   * @Assert\Type("string", message="Cette valeur devrait être du type {{ type }}")
+   * @Assert\Type("float", message="Cette valeur devrait être du type {{ type }}")
    */
   private $longitude;
 
@@ -193,6 +193,18 @@ class Place
   public function setPostalCode($postalCode)
   {
     $this->postalCode = $postalCode;
+    return $this;
+  }
+
+  public function setLatitude($latitude)
+  {
+    $this->latitude = $latitude;
+    return $this;
+  }
+
+  public function setLongitude($longitude)
+  {
+    $this->longitude = $longitude;
     return $this;
   }
 

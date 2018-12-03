@@ -14,7 +14,7 @@ class PlaceController extends AbstractController
 {
     /**
      * @Rest\View()
-     * @Rest\Get("/Places")
+     * @Rest\Get("/places")
      */
     public function getPlacesAction(Request $request)
     {
@@ -23,7 +23,7 @@ class PlaceController extends AbstractController
 
     /**
      * @Rest\View()
-     * @Rest\Get("/Places/{idPlace}")
+     * @Rest\Get("/places/{idPlace}")
      */
     public function getPlaceAction(Request $request)
     {
@@ -79,22 +79,24 @@ class PlaceController extends AbstractController
       $result;
       $returnArray = array();
 
-      foreach ($result[0]->getGreatDeals() as $greatDeal) {
-        if (sizeof($greatDeal->getPeriods()) == 0) {
-          if (!in_array($result[0], $returnArray)) {
-            array_push($returnArray, $result[0]);
+      for ($i=0; $i < sizeof($result); $i++) {
+        foreach ($result[$i]->getGreatDeals() as $greatDeal) {
+          if (sizeof($greatDeal->getPeriods()) == 0) {
+            if (!in_array($result[$i], $returnArray)) {
+              array_push($returnArray, $result[$i]);
+            }
           }
-        }
 
-        $periods = $greatDeal->getPeriods();
-        $date = strtotime(date('Y-m-d h:i:s'));
+          $periods = $greatDeal->getPeriods();
+          $date = strtotime(date('Y-m-d h:i:s'));
 
-        for ($i=0; $i < sizeof($periods); $i++) {
-          $startDate = $periods[$i]->getStartDate()->getTimestamp();
-          $endDate = $periods[$i]->getEndDate()->getTimestamp();
-          if ($startDate < $date && $endDate > $date) {
-            if (!in_array($result[0], $returnArray)) {
-              array_push($returnArray, $result[0]);
+          for ($j=0; $j < sizeof($periods); $j++) {
+            $startDate = $periods[$j]->getStartDate()->getTimestamp();
+            $endDate = $periods[$j]->getEndDate()->getTimestamp();
+            if ($startDate < $date && $endDate > $date) {
+              if (!in_array($result[$i], $returnArray)) {
+                array_push($returnArray, $result[$i]);
+              }
             }
           }
         }
@@ -109,31 +111,31 @@ class PlaceController extends AbstractController
 
     /**
      * @Rest\View(statusCode=Response::HTTP_CREATED)
-     * @Rest\Post("/Places")
+     * @Rest\Post("/places")
      */
     public function postPlaceAction(Request $request)
     {
-        $Place = new Place();
-        $form = $this->createForm(PlaceType::class, $Place);
+        $place = new Place();
+        $form = $this->createForm(PlaceType::class, $place);
 
-        return $this->postEntityAction($Place, $form, $request);
+        return $this->postEntityAction($place, $form, $request);
     }
 
     /**
      * @Rest\View()
-     * @Rest\Patch("/Places/{idPlace}")
+     * @Rest\Patch("/places/{idPlace}")
      */
     public function patchPlaceAction(Request $request)
     {
-        $Place = $this->getOneInstanceOfOneEntityById("Place", $request->get('idPlace'));
-        $form = $this->createForm(PlaceType::class, $Place);
+        $place = $this->getOneInstanceOfOneEntityById("Place", $request->get('idPlace'));
+        $form = $this->createForm(PlaceType::class, $place);
 
-        return $this->patchEntityAction($Place, $form, $request);
+        return $this->patchEntityAction($place, $form, $request);
     }
 
     /**
      * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
-     * @Rest\Delete("/Places/{idPlace}")
+     * @Rest\Delete("/places/{idPlace}")
      */
     public function removePlaceAction(Request $request)
     {
