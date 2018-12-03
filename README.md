@@ -29,6 +29,10 @@ Pour changer votre installation de PHP sur windows, il faut aller dans `Windows+
 http://localhost/phpmyadmin/
 ```
 
+### MacOS
+
+L'installation des prérequis sur MacOS est pratiquement pareil que pour Windows, à la différence qu'il faut installer MAMP au lieu de WAMP.
+
 ## Configurer le serveur REST
 
 1. Initialiser le projet
