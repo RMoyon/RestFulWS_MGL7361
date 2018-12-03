@@ -35,16 +35,14 @@ L'installation des prérequis sur MacOS est pratiquement pareil que pour Windows
 
 ## Configurer le serveur REST
 
-1. Initialiser le projet
+L'ensemble des commandes qui vont suivre doivent être faite dans l'invite de commande, après s'être assuré que PHP fonctionne correctement, à la base du dossier RestFulWS_MGL7361.
 
-Dans l'invite de commande, dans la base du dossier RestFulWS_MGL7361
+1. Initialiser le projet
 ```
 composer install
 ```
 
 2. Créer la base de données
-
-Dans l'invite de commande, dans la base du dossier RestFulWS_MGL7361
 ```
 php bin/console doctrine:database:create
 php bin/console doctrine:schema:update --dump-sql --force
@@ -65,4 +63,4 @@ php bin/console server:run
 127.0.0.1:8000/users
 ```
 
-Pour le test, l'installation d'un logiciel comme Postman est recommandé pour une plus grande lisibilité et facilité d'utilisation.
+Pour tester efficacement le serveur, l'installation d'un logiciel comme Postman est recommandé pour une plus grande lisibilité et facilité d'utilisation.
