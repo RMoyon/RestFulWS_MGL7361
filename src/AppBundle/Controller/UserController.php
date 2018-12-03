@@ -154,6 +154,6 @@ class UserController extends AbstractController
         $entityManager->merge($user);
         $entityManager->flush();
 
-        return $user->getUniversities();
+        return $user;
     }
 }

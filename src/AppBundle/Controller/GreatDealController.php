@@ -43,70 +43,71 @@ class GreatDealController extends AbstractController
     }
 
     /**
-      * @Rest\View()
-      * @Rest\Post("/greatDealsClosest")
-      */
-    public function postGreatDealsClosestAction(Request $request) {
-      $userPoint = new UserPoint();
-      $form = $this->createForm(UserPointType::class, $userPoint);
+     * @Rest\View()
+     * @Rest\Post("/greatdeals/closest")
+     */
+    public function postGreatDealsClosestAction(Request $request)
+    {
+        $userPoint = new UserPoint();
+        $form = $this->createForm(UserPointType::class, $userPoint);
 
-      $form->submit($request->request->all());
+        $form->submit($request->request->all());
 
-      if (!$form->isValid()) {
-          return $form;
-      }
+        if (!$form->isValid()) {
+            return $form;
+        }
 
-      $result = $this->closestGreatDealsQuery($userPoint);
+        $result = $this->closestGreatDealsQuery($userPoint);
 
-      return $this->closestTimedGreatDeals($result, $userPoint->getReturnNumber());
+        return $this->closestTimedGreatDeals($result, $userPoint->getReturnNumber());
     }
 
     private function closestGreatDealsQuery(UserPoint $point)
     {
-      $formule = '((ACOS(SIN(:lat * PI() / 180) * SIN(i.latitude * PI() / 180) + COS(:lat * PI() / 180) * COS(i.latitude * PI() / 180) * COS((:lng - i.longitude) * PI() / 180)) * 180 / PI()) * 60 * 1.1515)';
+        $formule = '((ACOS(SIN(:lat * PI() / 180) * SIN(i.latitude * PI() / 180) + COS(:lat * PI() / 180) * COS(i.latitude * PI() / 180) * COS((:lng - i.longitude) * PI() / 180)) * 180 / PI()) * 60 * 1.1515)';
 
-      $entityManager = $this->getEntityManager();
-      $dql  = 'SELECT g';
-      $dql .= ' FROM AppBundle\Entity\GreatDeal g';
-      $dql .= ' JOIN g.places i';
-      $dql .= ' ORDER BY '.$formule.' ASC';
+        $entityManager = $this->getEntityManager();
+        $dql = 'SELECT g';
+        $dql .= ' FROM AppBundle\Entity\GreatDeal g';
+        $dql .= ' JOIN g.places i';
+        $dql .= ' ORDER BY ' . $formule . ' ASC';
 
-      $query = $entityManager->createQuery($dql)
-        ->setParameter('lat', $point->getLatitude())
-        ->setParameter('lng', $point->getLongitude());
+        $query = $entityManager->createQuery($dql)
+            ->setParameter('lat', $point->getLatitude())
+            ->setParameter('lng', $point->getLongitude());
 
-      return $query->execute();
+        return $query->execute();
     }
 
     private function closestTimedGreatDeals($greatDeal, string $returnNumber)
     {
-      $returnArray = array();
-      for ($i=0; $i < sizeof($greatDeal); $i++) {
-        if (sizeof($greatDeal[$i]->getPeriods()) == 0) {
-          if (!in_array($greatDeal[$i], $returnArray)) {
-            array_push($returnArray, $greatDeal[$i]);
-          }
-        }
-
-        $periods = $greatDeal[$i]->getPeriods();
-        $date = strtotime(date('Y-m-d h:i:s'));
-
-        for ($y=0; $y < sizeof($periods); $y++) {
-          $startDate = $periods[$y]->getStartDate()->getTimestamp();
-          $endDate = $periods[$y]->getEndDate()->getTimestamp();
-          if ($startDate < $date && $endDate > $date) {
-            if (!in_array($greatDeal[$i], $returnArray)) {
-              array_push($returnArray, $greatDeal[$i]);
+        $returnArray = array();
+        for ($i = 0; $i < sizeof($greatDeal); $i++) {
+            if (sizeof($greatDeal[$i]->getPeriods()) == 0) {
+                if (!in_array($greatDeal[$i], $returnArray)) {
+                    array_push($returnArray, $greatDeal[$i]);
+                }
             }
-          }
+
+            $periods = $greatDeal[$i]->getPeriods();
+            $date = strtotime(date('Y-m-d h:i:s'));
+
+            for ($y = 0; $y < sizeof($periods); $y++) {
+                $startDate = $periods[$y]->getStartDate()->getTimestamp();
+                $endDate = $periods[$y]->getEndDate()->getTimestamp();
+                if ($startDate < $date && $endDate > $date) {
+                    if (!in_array($greatDeal[$i], $returnArray)) {
+                        array_push($returnArray, $greatDeal[$i]);
+                    }
+                }
+            }
+
+            if (sizeof($returnArray) == $returnNumber) {
+                return $returnArray;
+            }
         }
 
-        if (sizeof($returnArray) == $returnNumber) {
-          return $returnArray;
-        }
-      }
-
-      return $returnArray;
+        return $returnArray;
     }
 
     /**

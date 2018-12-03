@@ -1,10 +1,10 @@
 <?php
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Place;
 use AppBundle\Entity\MapPoints;
-use AppBundle\Form\Type\PlaceType;
+use AppBundle\Entity\Place;
 use AppBundle\Form\Type\MapPointsType;
+use AppBundle\Form\Type\PlaceType;
 use AppBundle\SymfonyAbstract\AbstractController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,51 +31,53 @@ class PlaceController extends AbstractController
     }
 
     /**
-      * @Rest\View()
-      * @Rest\Post("/placesClosest")
-      */
-    public function postPlacesClosestAction(Request $request) {
-      $map = new MapPoints();
-      $form = $this->createForm(MapPointsType::class, $map);
+     * @Rest\View()
+     * @Rest\Post("/places/closest")
+     */
+    public function postPlacesClosestAction(Request $request)
+    {
+        $map = new MapPoints();
+        $form = $this->createForm(MapPointsType::class, $map);
 
-      $form->submit($request->request->all());
+        $form->submit($request->request->all());
 
-      if (!$form->isValid()) {
-          return $form;
-      }
+        if (!$form->isValid()) {
+            return $form;
+        }
 
-      $result = $this->closestPlacesQuery($map);
+        $result = $this->closestPlacesQuery($map);
 
-      return $this->closestTimedLocalization($result, $map->getReturnNumber());
+        return $this->closestTimedLocalization($result, $map->getReturnNumber());
     }
 
     private function closestPlacesQuery(MapPoints $map)
     {
-      $latitude = ($map->getTop() + $map->getBottom())/2;
-      $longitude = ($map->getLeft() + $map->getRight())/2;
+        $latitude = ($map->getTop() + $map->getBottom()) / 2;
+        $longitude = ($map->getLeft() + $map->getRight()) / 2;
 
-      $formule = '((ACOS(SIN(:lat * PI() / 180) * SIN(i.latitude * PI() / 180) + COS(:lat * PI() / 180) * COS(i.latitude * PI() / 180) * COS((:lng - i.longitude) * PI() / 180)) * 180 / PI()) * 60 * 1.1515)';
+        $formule = '((ACOS(SIN(:lat * PI() / 180) * SIN(i.latitude * PI() / 180) + COS(:lat * PI() / 180) * COS(i.latitude * PI() / 180) * COS((:lng - i.longitude) * PI() / 180)) * 180 / PI()) * 60 * 1.1515)';
 
-      $entityManager = $this->getEntityManager();
-      $dql  = 'SELECT i';
-      $dql .= ' FROM AppBundle\Entity\Place i';
-      $dql .= ' JOIN i.great_deals g';
-      $dql .= ' WHERE i.latitude < :top AND i.latitude > :bottom AND i.longitude < :right AND i.longitude > :left';
-      $dql .= ' ORDER BY '.$formule.' ASC';
+        $entityManager = $this->getEntityManager();
+        $dql = 'SELECT i';
+        $dql .= ' FROM AppBundle\Entity\Place i';
+        $dql .= ' JOIN i.great_deals g';
+        $dql .= ' WHERE i.latitude < :top AND i.latitude > :bottom AND i.longitude < :right AND i.longitude > :left';
+        $dql .= ' ORDER BY ' . $formule . ' ASC';
 
-      $query = $entityManager->createQuery($dql)
-        ->setParameter('lat', $latitude)
-        ->setParameter('lng', $longitude)
-        ->setParameter('top', $map->getTop())
-        ->setParameter('bottom', $map->getBottom())
-        ->setParameter('left', $map->getLeft())
-        ->setParameter('right', $map->getRight());
+        $query = $entityManager->createQuery($dql)
+            ->setParameter('lat', $latitude)
+            ->setParameter('lng', $longitude)
+            ->setParameter('top', $map->getTop())
+            ->setParameter('bottom', $map->getBottom())
+            ->setParameter('left', $map->getLeft())
+            ->setParameter('right', $map->getRight());
 
-      return $query->execute();
+        return $query->execute();
     }
 
     private function closestTimedLocalization($result, string $returnNumber)
     {
+<<<<<<< HEAD
       $result;
       $returnArray = array();
 
@@ -97,16 +99,37 @@ class PlaceController extends AbstractController
               if (!in_array($result[$i], $returnArray)) {
                 array_push($returnArray, $result[$i]);
               }
+=======
+        $result;
+        $returnArray = array();
+
+        foreach ($result[0]->getGreatDeals() as $greatDeal) {
+            if (sizeof($greatDeal->getPeriods()) == 0) {
+                if (!in_array($result[0], $returnArray)) {
+                    array_push($returnArray, $result[0]);
+                }
             }
-          }
+
+            $periods = $greatDeal->getPeriods();
+            $date = strtotime(date('Y-m-d h:i:s'));
+
+            for ($i = 0; $i < sizeof($periods); $i++) {
+                $startDate = $periods[$i]->getStartDate()->getTimestamp();
+                $endDate = $periods[$i]->getEndDate()->getTimestamp();
+                if ($startDate < $date && $endDate > $date) {
+                    if (!in_array($result[0], $returnArray)) {
+                        array_push($returnArray, $result[0]);
+                    }
+                }
+>>>>>>> 913be25f11c7196eeb7215edc4e4e342a611ca71
+            }
         }
-      }
 
-      if (sizeof($returnArray) == $returnNumber) {
+        if (sizeof($returnArray) == $returnNumber) {
+            return $returnArray;
+        }
+
         return $returnArray;
-      }
-
-      return $returnArray;
     }
 
     /**
