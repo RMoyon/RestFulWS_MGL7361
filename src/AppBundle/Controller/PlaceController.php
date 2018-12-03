@@ -77,7 +77,6 @@ class PlaceController extends AbstractController
 
     private function closestTimedLocalization($result, string $returnNumber)
     {
-<<<<<<< HEAD
       $result;
       $returnArray = array();
 
@@ -99,37 +98,16 @@ class PlaceController extends AbstractController
               if (!in_array($result[$i], $returnArray)) {
                 array_push($returnArray, $result[$i]);
               }
-=======
-        $result;
-        $returnArray = array();
-
-        foreach ($result[0]->getGreatDeals() as $greatDeal) {
-            if (sizeof($greatDeal->getPeriods()) == 0) {
-                if (!in_array($result[0], $returnArray)) {
-                    array_push($returnArray, $result[0]);
-                }
             }
-
-            $periods = $greatDeal->getPeriods();
-            $date = strtotime(date('Y-m-d h:i:s'));
-
-            for ($i = 0; $i < sizeof($periods); $i++) {
-                $startDate = $periods[$i]->getStartDate()->getTimestamp();
-                $endDate = $periods[$i]->getEndDate()->getTimestamp();
-                if ($startDate < $date && $endDate > $date) {
-                    if (!in_array($result[0], $returnArray)) {
-                        array_push($returnArray, $result[0]);
-                    }
-                }
->>>>>>> 913be25f11c7196eeb7215edc4e4e342a611ca71
-            }
+          }
         }
 
         if (sizeof($returnArray) == $returnNumber) {
             return $returnArray;
         }
+      }
 
-        return $returnArray;
+      return $returnArray;
     }
 
     /**
